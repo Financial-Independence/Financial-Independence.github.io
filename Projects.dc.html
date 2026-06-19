@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="site.js"></script>
+  <style>html,body{margin:0;padding:0}*{box-sizing:border-box}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #6e9bff;outline-offset:2px;border-radius:4px}@media (prefers-reduced-motion: reduce){*{transition-duration:.001ms !important}}</style>
+  <template id="__bundler_thumbnail"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="14" fill="#0f1f4a"/><text x="32" y="41" font-family="Arial" font-size="24" font-weight="800" fill="#fff" text-anchor="middle">FI</text></svg></template>
+</helmet>
+<div style="font-family:'Pretendard',-apple-system,sans-serif;background:#f6f8fc;color:#0f172a;min-height:100vh;overflow-x:hidden">
+  <dc-import name="Nav" current="projects" hint-size="100%,66px"></dc-import>
+
+  <section style="background:#fff;border-bottom:1px solid #eaeef6">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,84px) clamp(20px,5vw,40px) clamp(40px,5vw,60px)">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1e3a8a;font-family:'JetBrains Mono',monospace">{{ eyebrow }}</div>
+      <h1 style="font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-.03em;margin:16px 0 0;line-height:1.08">{{ title }}</h1>
+      <p style="font-size:clamp(16px,2vw,20px);line-height:1.6;color:#5a6478;margin:20px 0 0;max-width:620px">{{ lead }}</p>
+    </div>
+  </section>
+
+  <section>
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,5vw,64px) clamp(20px,5vw,40px);display:flex;flex-direction:column;gap:28px">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+        <div style="background:#fff;border:1px solid #e7ecf5;border-radius:24px;overflow:hidden;box-shadow:0 1px 3px rgba(15,31,74,.05)">
+          <div style="display:flex;flex-wrap:wrap">
+            <div style="flex:1 1 340px;min-width:280px;background:{{ c.mediaBg }};display:flex;align-items:center;justify-content:center;padding:clamp(26px,3.5vw,40px);height:clamp(300px,30vw,360px)">
+              <sc-if value="{{ c.isWeb }}" hint-placeholder-val="{{ false }}">
+                <div style="width:100%;max-width:440px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.18);box-shadow:0 26px 54px -26px rgba(0,0,0,.5);background:#fff">
+                  <div style="height:30px;background:#eef2f7;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid #e3e8f0"><span style="width:9px;height:9px;border-radius:50%;background:#f87171"></span><span style="width:9px;height:9px;border-radius:50%;background:#fbbf24"></span><span style="width:9px;height:9px;border-radius:50%;background:#34d399"></span></div>
+                  {{ c.heroEl }}
+                </div>
+              </sc-if>
+              <sc-if value="{{ c.isPhone }}" hint-placeholder-val="{{ false }}">
+                <div style="height:100%;aspect-ratio:9/19.3;border-radius:30px;overflow:hidden;border:8px solid #0b0e1c;box-shadow:0 26px 54px -26px rgba(0,0,0,.5);background:#0b0e1c">
+                  {{ c.heroEl }}
+                </div>
+              </sc-if>
+              <sc-if value="{{ c.noHero }}" hint-placeholder-val="{{ false }}">
+                <div style="text-align:center;color:#fff">
+                  <div style="width:84px;height:84px;border-radius:22px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);display:grid;place-items:center;font-size:30px;font-weight:800;margin:0 auto 18px">{{ c.mark }}</div>
+                  <div style="font-size:18px;font-weight:700;opacity:.92">{{ c.name }}</div>
+                  <div style="font-size:13px;margin-top:6px;opacity:.7;font-family:'JetBrains Mono',monospace">{{ c.platformsLine }}</div>
+                </div>
+              </sc-if>
+            </div>
+            <div style="flex:1.15 1 380px;min-width:300px;padding:clamp(28px,3.5vw,44px)">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+                <span style="font-size:13px;font-weight:700;color:{{ c.accent }};letter-spacing:.02em;white-space:nowrap">{{ c.category }}</span>
+                <span style="{{ c.badgeStyle }}">{{ c.badge }}</span>
+              </div>
+              <h2 style="font-size:clamp(26px,3vw,34px);font-weight:800;letter-spacing:-.02em;margin:0;line-height:1.1">{{ c.name }}</h2>
+              <p style="font-size:18px;font-weight:600;color:#334155;margin:12px 0 0;line-height:1.4">{{ c.tagline }}</p>
+              <p style="font-size:15px;line-height:1.65;color:#64748b;margin:14px 0 0;max-width:520px">{{ c.summary }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:22px">
+                <sc-for list="{{ c.tech }}" as="tg" hint-placeholder-count="5">
+                  <span style="font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace;color:#5a6478;background:#f1f4f9;border:1px solid #e7ecf5;border-radius:7px;padding:4px 10px">{{ tg }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+                <a href="{{ c.href }}" style="text-decoration:none;color:#fff;background:{{ c.accent }};font-size:15px;font-weight:700;padding:12px 22px;border-radius:11px;transition:transform .15s,filter .15s" style-hover="transform:translateY(-2px);filter:brightness(1.08)">{{ c.cta }} →</a>
+                <sc-if value="{{ c.hasUrl }}" hint-placeholder-val="{{ true }}">
+                  <a href="{{ c.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:#1e293b;background:#fff;border:1px solid #d8dfea;font-size:15px;font-weight:700;padding:12px 20px;border-radius:11px" style-hover="background:#f6f8fc">{{ c.openLabel }} ↗</a>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+
+      <div style="border:2px dashed #d4dbe8;border-radius:24px;padding:clamp(36px,5vw,56px);text-align:center;background:#fafbfe">
+        <div style="width:54px;height:54px;border-radius:14px;background:#eef2f9;color:#94a3b8;display:grid;place-items:center;font-size:28px;font-weight:300;margin:0 auto 18px">+</div>
+        <h3 style="font-size:22px;font-weight:800;color:#475569;margin:0 0 10px;letter-spacing:-.01em">{{ soonTitle }}</h3>
+        <p style="font-size:15px;line-height:1.6;color:#94a3b8;margin:0 auto;max-width:460px">{{ soonDesc }}</p>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,340px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { lang: (window.FI && window.FI.getLang && window.FI.getLang()) || 'ko' };
+  }
+  componentDidMount(){
+    if (window.FI) {
+      this.setState({ lang: window.FI.getLang() });
+      this._off = window.FI.onLangChange((l) => this.setState({ lang: l }));
+    }
+    try { document.title = '프로젝트 · Financial-Independence'; } catch(e){}
+  }
+  componentWillUnmount(){ if (this._off) this._off(); }
+  renderVals(){
+    var ko = this.state.lang === 'ko';
+    var t = function(a,b){ return ko ? a : b; };
+    var P = (window.FI && window.FI.PROJECTS) || [];
+    var cards = P.map(function(p){
+      return {
+        href: 'Project.dc.html?id=' + p.id,
+        accent: p.accent,
+        mediaBg: 'linear-gradient(150deg,' + p.accent + ',' + p.accentDeep + ')',
+        isWeb: !!p.hero && p.heroKind === 'web',
+        isPhone: !!p.hero && p.heroKind === 'phone',
+        noHero: !p.hero,
+        heroEl: (p.hero ? React.createElement('img', { src: p.hero, alt: '',
+          style: p.heroKind === 'phone'
+            ? { display:'block', width:'100%', height:'100%', objectFit:'cover' }
+            : { display:'block', width:'100%' } }) : null),
+        mark: p.mark,
+        platformsLine: p.platforms.join('  ·  '),
+        category: ko ? p.category.ko : p.category.en,
+        badge: p.released ? t('운영 중','Live') : t('개발 중','In dev'),
+        badgeStyle: { fontSize:'11px', fontWeight:700, letterSpacing:'.06em', fontFamily:'JetBrains Mono,monospace', color: p.released ? '#15803d' : '#b45309', background: p.released ? '#dcfce7' : '#fef3c7', borderRadius:'999px', padding:'4px 11px', whiteSpace:'nowrap', flexShrink:0 },
+        name: ko ? p.name.ko : p.name.en,
+        tagline: ko ? p.tagline.ko : p.tagline.en,
+        summary: ko ? p.summary.ko : p.summary.en,
+        tech: p.tech,
+        cta: t('자세히 보기','View project'),
+        hasUrl: !!p.url,
+        url: p.url || '#',
+        openLabel: t('웹에서 열기','Open web app')
+      };
+    });
+    return {
+      eyebrow: t('프로젝트','Projects'),
+      title: t('우리가 만들어 운영하는 서비스','Products we build and run'),
+      lead: t('각 서비스는 실제로 출시되어 사용자가 쓰고 있습니다. 새 프로젝트가 완성되면 이 목록에 계속 추가됩니다.','Every product here is shipped and in use. New projects join this list as they launch.'),
+      cards: cards,
+      soonTitle: t('더 많은 프로젝트가 개발 중','More projects in development'),
+      soonDesc: t('다음 서비스를 준비하고 있습니다. 출시되는 대로 이곳에서 소개할게요.','We\u2019re working on what\u2019s next — it\u2019ll appear here the moment it ships.')
+    };
+  }
+}
+</script>
+</body>
+</html>

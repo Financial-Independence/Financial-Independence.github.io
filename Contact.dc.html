@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="site.js"></script>
+  <style>html,body{margin:0;padding:0}*{box-sizing:border-box}
+    .fi-inp{width:100%;font-family:'Pretendard',-apple-system,sans-serif;font-size:15px;color:#0f172a;background:#fff;border:1px solid #d8dfea;border-radius:11px;padding:13px 15px;outline:none;transition:border-color .15s,box-shadow .15s}
+    .fi-inp:focus{border-color:#1e3a8a;box-shadow:0 0 0 3px rgba(30,58,138,.12)}
+    .fi-inp::placeholder{color:#9aa6b8}
+    textarea.fi-inp{resize:vertical;min-height:130px;line-height:1.5}
+    a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #6e9bff;outline-offset:2px;border-radius:4px}
+  </style>
+  <template id="__bundler_thumbnail"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="14" fill="#0f1f4a"/><text x="32" y="41" font-family="Arial" font-size="24" font-weight="800" fill="#fff" text-anchor="middle">FI</text></svg></template>
+</helmet>
+<div style="font-family:'Pretendard',-apple-system,sans-serif;background:#f6f8fc;color:#0f172a;min-height:100vh;overflow-x:hidden">
+  <dc-import name="Nav" current="contact" hint-size="100%,66px"></dc-import>
+
+  <section style="background:#fff;border-bottom:1px solid #eaeef6">
+    <div style="max-width:1000px;margin:0 auto;padding:clamp(48px,7vw,84px) clamp(20px,5vw,40px) clamp(36px,5vw,56px)">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1e3a8a;font-family:'JetBrains Mono',monospace">{{ eyebrow }}</div>
+      <h1 style="font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-.03em;margin:16px 0 0;line-height:1.08">{{ title }}</h1>
+      <p style="font-size:clamp(16px,2vw,20px);line-height:1.6;color:#5a6478;margin:20px 0 0;max-width:560px">{{ lead }}</p>
+    </div>
+  </section>
+
+  <section>
+    <div style="max-width:1000px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(20px,5vw,40px);display:flex;gap:clamp(28px,4vw,48px);flex-wrap:wrap;align-items:flex-start">
+      <!-- methods -->
+      <div style="flex:1 1 280px;min-width:260px;display:flex;flex-direction:column;gap:14px">
+        <a href="{{ mailto }}" style="display:flex;gap:15px;align-items:center;text-decoration:none;background:#fff;border:1px solid #e7ecf5;border-radius:16px;padding:20px 22px;transition:transform .15s,box-shadow .15s" style-hover="transform:translateY(-2px);box-shadow:0 18px 36px -22px rgba(15,31,74,.35)">
+          <span style="width:46px;height:46px;border-radius:12px;background:#e8eefc;color:#1e3a8a;display:grid;place-items:center;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></span>
+          <span style="min-width:0"><span style="display:block;font-size:13px;font-weight:700;color:#94a3b8;letter-spacing:.04em">{{ emailLabel }}</span><span style="display:block;font-size:15.5px;font-weight:700;color:#0f172a;margin-top:3px;word-break:break-all">{{ email }}</span></span>
+        </a>
+        <a href="{{ github }}" target="_blank" rel="noopener" style="display:flex;gap:15px;align-items:center;text-decoration:none;background:#fff;border:1px solid #e7ecf5;border-radius:16px;padding:20px 22px;transition:transform .15s,box-shadow .15s" style-hover="transform:translateY(-2px);box-shadow:0 18px 36px -22px rgba(15,31,74,.35)">
+          <span style="width:46px;height:46px;border-radius:12px;background:#1e293b;color:#fff;display:grid;place-items:center;flex:none"><svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></span>
+          <span style="min-width:0"><span style="display:block;font-size:13px;font-weight:700;color:#94a3b8;letter-spacing:.04em">{{ githubLabel }}</span><span style="display:block;font-size:15.5px;font-weight:700;color:#0f172a;margin-top:3px;word-break:break-all">{{ githubHandle }}</span></span>
+        </a>
+        <div style="background:#fff;border:1px solid #e7ecf5;border-radius:16px;padding:22px">
+          <div style="font-size:13px;font-weight:700;color:#94a3b8;letter-spacing:.04em;margin-bottom:14px">{{ topicsLabel }}</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <sc-for list="{{ topics }}" as="tp" hint-placeholder-count="3">
+              <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#475569;line-height:1.45"><span style="color:#1e3a8a;font-weight:800">·</span>{{ tp }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- form -->
+      <div style="flex:1.3 1 360px;min-width:300px;background:#fff;border:1px solid #e7ecf5;border-radius:20px;padding:clamp(26px,4vw,38px);box-shadow:0 1px 3px rgba(15,31,74,.05)">
+        <h2 style="font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px">{{ formTitle }}</h2>
+        <p style="font-size:14px;color:#697386;margin:0 0 24px;line-height:1.5">{{ formNote }}</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <label style="flex:1 1 150px;min-width:140px"><span style="{{ lbl }}">{{ fName }}</span><input class="fi-inp" type="text" value="{{ vName }}" onInput="{{ onName }}" placeholder="{{ phName }}"></label>
+            <label style="flex:1 1 150px;min-width:140px"><span style="{{ lbl }}">{{ fEmail }}</span><input class="fi-inp" type="email" value="{{ vEmail }}" onInput="{{ onEmail }}" placeholder="{{ phEmail }}"></label>
+          </div>
+          <label><span style="{{ lbl }}">{{ fTopic }}</span>
+            <select class="fi-inp" value="{{ vTopic }}" onChange="{{ onTopic }}">
+              <sc-for list="{{ topicOptions }}" as="op" hint-placeholder-count="4">
+                <option value="{{ op }}">{{ op }}</option>
+              </sc-for>
+            </select>
+          </label>
+          <label><span style="{{ lbl }}">{{ fMsg }}</span><textarea class="fi-inp" value="{{ vMsg }}" onInput="{{ onMsg }}" placeholder="{{ phMsg }}"></textarea></label>
+          <button onClick="{{ submit }}" style="margin-top:4px;border:none;cursor:pointer;background:#1e3a8a;color:#fff;font-family:'Pretendard',sans-serif;font-size:16px;font-weight:700;padding:15px 22px;border-radius:12px;transition:transform .15s,box-shadow .15s;box-shadow:0 10px 24px -10px rgba(30,58,138,.7)" style-hover="transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(30,58,138,.8)">{{ submitLabel }}</button>
+          <div style="font-size:12.5px;color:#9aa6b8;text-align:center;line-height:1.5">{{ mailHint }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,340px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:820}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = {
+      lang: (window.FI && window.FI.getLang && window.FI.getLang()) || 'ko',
+      name: '', email: '', topic: '', msg: ''
+    };
+  }
+  componentDidMount(){
+    if (window.FI) {
+      this.setState({ lang: window.FI.getLang() });
+      this._off = window.FI.onLangChange((l) => this.setState({ lang: l }));
+    }
+    try { document.title = '문의 · Financial-Independence'; } catch(e){}
+  }
+  componentWillUnmount(){ if (this._off) this._off(); }
+  renderVals(){
+    var self = this;
+    var ko = this.state.lang === 'ko';
+    var t = function(a,b){ return ko ? a : b; };
+    var C = (window.FI && window.FI.COMPANY) || {};
+    var email = C.email || '';
+    var topicOptions = ko
+      ? ['외주 · 개발 요청','서비스 이용 문의','제휴 · 광고','미디어 · 취재','기타']
+      : ['Freelance · Dev request','Using a product','Partnership · Ads','Media · Press','Other'];
+    var lbl = { display:'block', fontSize:'13px', fontWeight:700, color:'#475569', marginBottom:'7px' };
+
+    var submit = function(){
+      var s = self.state;
+      var topic = s.topic || topicOptions[0];
+      var subj = '[Financial-Independence] ' + topic + (s.name ? ' - ' + s.name : '');
+      var bodyLines = [
+        (ko?'이름: ':'Name: ') + (s.name||''),
+        (ko?'회신 이메일: ':'Reply email: ') + (s.email||''),
+        (ko?'문의 유형: ':'Topic: ') + topic,
+        '',
+        (s.msg||'')
+      ];
+      var href = 'mailto:' + email + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+      try { window.location.href = href; } catch(e){}
+    };
+
+    return {
+      eyebrow: t('문의','Contact'),
+      title: t('무엇이든 편하게 연락 주세요','Reach out about anything'),
+      lead: t('외주·개발 요청, 서비스 이용, 제휴·광고, 미디어 취재 등 어떤 문의든 환영합니다. 보통 영업일 기준 며칠 안에 답장드립니다.','App and web development requests, product questions, partnerships, ads or press — all welcome. We usually reply within a few business days.'),
+      mailto: 'mailto:' + email,
+      email: email,
+      emailLabel: t('이메일','Email'),
+      github: C.github || '#',
+      githubLabel: 'GitHub',
+      githubHandle: 'Financial-Independence',
+      topicsLabel: t('이런 문의를 받습니다','What we hear about'),
+      topics: ko
+        ? ['앱·웹 외주 개발 및 제작 요청 (기획·디자인·개발·배포)','서비스 사용 중 생긴 문의와 피드백','광고·제휴 등 비즈니스 제안','앱·서비스 관련 미디어 취재 요청']
+        : ['App / web development & build requests (plan · design · dev · deploy)','Questions and feedback while using a product','Business, ads and partnership proposals','Media and press inquiries about our apps'],
+      formTitle: t('메시지 보내기','Send a message'),
+      formNote: t('아래를 작성하면 메일 앱이 열리며 내용이 자동으로 채워집니다.','Fill this in and your mail app opens with everything prefilled.'),
+      lbl: lbl,
+      fName: t('이름','Name'), phName: t('홍길동','Your name'), vName: this.state.name, onName: function(e){ self.setState({ name: e.target.value }); },
+      fEmail: t('회신 이메일','Your email'), phEmail: 'you@example.com', vEmail: this.state.email, onEmail: function(e){ self.setState({ email: e.target.value }); },
+      fTopic: t('문의 유형','Topic'), vTopic: this.state.topic || topicOptions[0], topicOptions: topicOptions, onTopic: function(e){ self.setState({ topic: e.target.value }); },
+      fMsg: t('내용','Message'), phMsg: t('어떤 점이 궁금하신가요?','How can we help?'), vMsg: this.state.msg, onMsg: function(e){ self.setState({ msg: e.target.value }); },
+      submit: submit,
+      submitLabel: t('메일로 보내기','Send via email'),
+      mailHint: t('· 전송 시 기본 메일 앱이 열립니다','· opens your default mail app')
+    };
+  }
+}
+</script>
+</body>
+</html>

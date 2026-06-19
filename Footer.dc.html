@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="site.js"></script>
+</helmet>
+<footer style="background:radial-gradient(130% 140% at 85% -20%,#1b366f 0%,#13245a 45%,#0c1840 100%);color:#cdd9f4;font-family:'Pretendard',-apple-system,sans-serif">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,80px) clamp(20px,5vw,40px) 36px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:clamp(28px,5vw,56px)">
+    <div style="min-width:200px">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
+        <span style="width:38px;height:38px;border-radius:10px;background:#fff;color:#0f1f4a;display:grid;place-items:center;font-weight:800;font-size:16px">FI</span>
+        <span style="font-size:17px;font-weight:800;color:#fff;letter-spacing:-.01em">Financial-Independence</span>
+      </div>
+      <p style="font-size:14px;line-height:1.65;color:#9db0d8;max-width:340px;margin:0">{{ blurb }}</p>
+      <a href="{{ github }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;text-decoration:none;color:#cdd9f4;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 15px" style-hover="background:rgba(255,255,255,.07)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div>
+      <div style="{{ colHead }}">{{ hExplore }}</div>
+      <a href="Home.dc.html" style="{{ fl }}" style-hover="{{ flH }}">{{ navHome }}</a>
+      <a href="Projects.dc.html" style="{{ fl }}" style-hover="{{ flH }}">{{ navProjects }}</a>
+      <a href="About.dc.html" style="{{ fl }}" style-hover="{{ flH }}">{{ navAbout }}</a>
+      <a href="Contact.dc.html" style="{{ fl }}" style-hover="{{ flH }}">{{ navContact }}</a>
+    </div>
+    <div>
+      <div style="{{ colHead }}">{{ hProjects }}</div>
+      <a href="Project.dc.html?id=dividend-analysis" style="{{ fl }}" style-hover="{{ flH }}">{{ p0 }}</a>
+      <a href="Project.dc.html?id=deposit-guard" style="{{ fl }}" style-hover="{{ flH }}">{{ p1 }}</a>
+      <span style="display:block;font-size:13px;color:#5f73a0;margin-top:6px">{{ moreSoon }}</span>
+    </div>
+    <div>
+      <div style="{{ colHead }}">{{ hContact }}</div>
+      <a href="{{ mailto }}" style="{{ fl }}" style-hover="{{ flH }}">{{ email }}</a>
+      <a href="Contact.dc.html" style="{{ fl }}" style-hover="{{ flH }}">{{ contactPage }}</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.1)">
+    <div style="max-width:1200px;margin:0 auto;padding:20px clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:#7e90bd;font-family:'JetBrains Mono',monospace">© {{ year }} Financial-Independence · {{ nameKo }}</span>
+      <span style="font-size:12.5px;color:#5f73a0">{{ rights }}</span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:340}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { lang: (window.FI && window.FI.getLang && window.FI.getLang()) || 'ko' };
+  }
+  componentDidMount(){
+    if (window.FI) {
+      this.setState({ lang: window.FI.getLang() });
+      this._off = window.FI.onLangChange((l) => this.setState({ lang: l }));
+    }
+  }
+  componentWillUnmount(){ if (this._off) this._off(); }
+  renderVals(){
+    var ko = this.state.lang === 'ko';
+    var t = function(a,b){ return ko ? a : b; };
+    var C = (window.FI && window.FI.COMPANY) || {};
+    var P = (window.FI && window.FI.PROJECTS) || [];
+    var fl = { display:'block', textDecoration:'none', color:'#a9bbe0', fontSize:'14px', fontWeight:500, marginBottom:'11px', transition:'color .15s', width:'fit-content' };
+    var colHead = { fontSize:'12px', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', color:'#6f83b3', marginBottom:'18px', fontFamily:'JetBrains Mono,monospace' };
+    var nm = function(p, i){ return p[i] ? (ko ? p[i].name.ko : p[i].name.en) : ''; };
+    return {
+      blurb: ko ? (C.blurb ? C.blurb.ko : '') : (C.blurb ? C.blurb.en : ''),
+      github: C.github || '#',
+      email: C.email || '',
+      mailto: 'mailto:' + (C.email || ''),
+      year: C.year || 2026,
+      nameKo: C.nameKo || '',
+      fl: fl, flH: { color:'#fff' }, colHead: colHead,
+      hExplore: t('둘러보기','Explore'),
+      hProjects: t('프로젝트','Projects'),
+      hContact: t('문의','Contact'),
+      navHome: t('홈','Home'),
+      navProjects: t('프로젝트','Projects'),
+      navAbout: t('회사 소개','About'),
+      navContact: t('문의하기','Contact'),
+      p0: nm(P,0), p1: nm(P,1),
+      moreSoon: t('+ 곧 추가됩니다','+ more coming'),
+      contactPage: t('문의 페이지','Contact page'),
+      rights: t('All rights reserved.','All rights reserved.')
+    };
+  }
+}
+</script>
+</body>
+</html>

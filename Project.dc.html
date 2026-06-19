@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="site.js"></script>
+  <style>html,body{margin:0;padding:0}*{box-sizing:border-box}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #6e9bff;outline-offset:2px;border-radius:4px}@media (prefers-reduced-motion: reduce){*{transition-duration:.001ms !important}}</style>
+  <template id="__bundler_thumbnail"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="14" fill="#0f1f4a"/><text x="32" y="41" font-family="Arial" font-size="24" font-weight="800" fill="#fff" text-anchor="middle">FI</text></svg></template>
+</helmet>
+<div style="font-family:'Pretendard',-apple-system,sans-serif;background:#f6f8fc;color:#0f172a;min-height:100vh;overflow-x:hidden">
+  <dc-import name="Nav" current="projects" hint-size="100%,66px"></dc-import>
+
+  <!-- ===== HERO ===== -->
+  <section style="background:{{ heroBg }};color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.06) 1px,transparent 0);background-size:30px 30px;opacity:.5"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(20px,5vw,40px) clamp(48px,7vw,84px);display:flex;gap:clamp(32px,5vw,64px);align-items:center;flex-wrap:wrap">
+      <div style="flex:1 1 420px;min-width:300px">
+        <a href="Projects.dc.html" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:#bccbee;font-size:14px;font-weight:600;margin-bottom:22px;white-space:nowrap" style-hover="color:#fff">← {{ back }}</a>
+        <sc-if value="{{ hasLogo }}" hint-placeholder-val="{{ false }}">
+          <span style="display:inline-grid;place-items:center;width:58px;height:58px;border-radius:15px;background:#fff;overflow:hidden;padding:7px;box-sizing:border-box;box-shadow:0 12px 28px -14px rgba(0,0,0,.5);margin-bottom:18px">{{ logoEl }}</span>
+        </sc-if>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px;flex-wrap:wrap">
+          <span style="font-size:13px;font-weight:700;color:#bccbee;letter-spacing:.02em;white-space:nowrap">{{ category }}</span>
+          <span style="{{ badgeStyle }}">{{ badge }}</span>
+        </div>
+        <h1 style="font-size:clamp(36px,5.5vw,60px);font-weight:800;letter-spacing:-.03em;margin:0;line-height:1.04">{{ name }}</h1>
+        <div style="font-size:15px;font-weight:600;color:#8fa7df;margin-top:10px;font-family:'JetBrains Mono',monospace">{{ sub }}</div>
+        <p style="font-size:clamp(18px,2.4vw,24px);font-weight:600;color:#dfe7f8;margin:22px 0 0;line-height:1.35;max-width:520px">{{ tagline }}</p>
+        <p style="font-size:16px;line-height:1.7;color:#bccbee;margin:18px 0 0;max-width:540px">{{ summary }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px">
+          <sc-for list="{{ actions }}" as="a" hint-placeholder-count="2">
+            <a href="{{ a.href }}" target="{{ a.target }}" rel="noopener" style="{{ a.style }}" style-hover="{{ a.hover }}">{{ a.label }}</a>
+          </sc-for>
+        </div>
+        <sc-if value="{{ showStoreNote }}" hint-placeholder-val="{{ true }}">
+          <div style="font-size:12.5px;color:#7e90bd;margin-top:14px;font-family:'JetBrains Mono',monospace">{{ storeNote }}</div>
+        </sc-if>
+      </div>
+      <div style="flex:1 1 320px;min-width:260px;display:flex;justify-content:center">
+        <sc-if value="{{ heroIsWeb }}" hint-placeholder-val="{{ false }}">
+          <div style="width:100%;max-width:520px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.16);box-shadow:0 40px 80px -30px rgba(0,0,0,.6);background:#fff">
+            <div style="height:36px;background:#eef2f7;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid #e3e8f0"><span style="width:10px;height:10px;border-radius:50%;background:#f87171"></span><span style="width:10px;height:10px;border-radius:50%;background:#fbbf24"></span><span style="width:10px;height:10px;border-radius:50%;background:#34d399"></span></div>
+            {{ heroEl }}
+          </div>
+        </sc-if>
+        <sc-if value="{{ heroIsPhone }}" hint-placeholder-val="{{ false }}">
+          <div style="width:248px;max-width:80vw;border-radius:38px;overflow:hidden;border:10px solid #0b0e1c;box-shadow:0 40px 80px -28px rgba(0,0,0,.6);background:#0b0e1c">
+            {{ heroEl }}
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section style="background:#fff;border-bottom:1px solid #eaeef6">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(52px,7vw,88px) clamp(20px,5vw,40px)">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:{{ accent }};font-family:'JetBrains Mono',monospace">{{ fEyebrow }}</div>
+      <h2 style="font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.02em;margin:14px 0 0;line-height:1.12;max-width:640px">{{ fTitle }}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:44px">
+        <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+          <div style="background:#f8fafc;border:1px solid #eef2f7;border-radius:18px;padding:28px 26px">
+            <div style="width:46px;height:46px;border-radius:12px;background:{{ accentSoft }};color:{{ accent }};display:grid;place-items:center;font-size:13px;font-weight:800;font-family:'JetBrains Mono',monospace;margin-bottom:18px">{{ f.k }}</div>
+            <h3 style="font-size:18px;font-weight:700;margin:0 0 9px;letter-spacing:-.01em">{{ f.t }}</h3>
+            <p style="font-size:14px;line-height:1.6;color:#5a6478;margin:0">{{ f.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin-top:48px;padding-top:40px;border-top:1px solid #eef2f7">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+          <div>
+            <div style="font-size:clamp(34px,4.5vw,46px);font-weight:800;color:{{ accent }};line-height:1;letter-spacing:-.02em;font-family:'JetBrains Mono',monospace">{{ s.v }}<span style="font-size:.5em;color:#94a3b8;margin-left:3px">{{ s.u }}</span></div>
+            <div style="font-size:14px;color:#5a6478;margin-top:10px;line-height:1.4">{{ s.l }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section style="background:#f6f8fc">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(52px,7vw,88px) clamp(20px,5vw,40px)">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:{{ accent }};font-family:'JetBrains Mono',monospace">{{ gEyebrow }}</div>
+      <h2 style="font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.02em;margin:14px 0 36px;line-height:1.12">{{ gTitle }}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;align-items:start">
+        <sc-for list="{{ shots }}" as="sh" hint-placeholder-count="3">
+          <figure style="margin:0">
+            <sc-if value="{{ sh.isWeb }}" hint-placeholder-val="{{ false }}">
+              <div style="border-radius:13px;overflow:hidden;border:1px solid #e3e8f0;box-shadow:0 18px 40px -22px rgba(15,31,74,.4);background:#fff">
+                <div style="height:28px;background:#eef2f7;display:flex;align-items:center;gap:6px;padding:0 11px;border-bottom:1px solid #e3e8f0"><span style="width:8px;height:8px;border-radius:50%;background:#f87171"></span><span style="width:8px;height:8px;border-radius:50%;background:#fbbf24"></span><span style="width:8px;height:8px;border-radius:50%;background:#34d399"></span></div>
+                {{ sh.el }}
+              </div>
+            </sc-if>
+            <sc-if value="{{ sh.isPhoneImg }}" hint-placeholder-val="{{ false }}">
+              <div style="width:200px;max-width:100%;margin:0 auto;border-radius:28px;overflow:hidden;border:8px solid #0f1f4a;box-shadow:0 22px 46px -22px rgba(15,31,74,.5);background:#0f1f4a">
+                {{ sh.el }}
+              </div>
+            </sc-if>
+            <figcaption style="text-align:center;margin-top:13px;font-size:13px;color:#697386;font-family:'JetBrains Mono',monospace">{{ sh.cap }}</figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING (optional) ===== -->
+  <sc-if value="{{ hasPricing }}" hint-placeholder-val="{{ false }}">
+    <section style="background:#fff;border-top:1px solid #eaeef6">
+      <div style="max-width:1000px;margin:0 auto;padding:clamp(52px,7vw,84px) clamp(20px,5vw,40px)">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:{{ accent }};font-family:'JetBrains Mono',monospace">{{ prEyebrow }}</div>
+        <h2 style="font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.02em;margin:14px 0 36px;line-height:1.12">{{ prTitle }}</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+          <sc-for list="{{ pricing }}" as="t" hint-placeholder-count="3">
+            <div style="{{ t.cardStyle }}">
+              <div style="font-size:14px;font-weight:700;letter-spacing:.04em;color:{{ t.nameColor }};text-transform:uppercase;font-family:'JetBrains Mono',monospace">{{ t.name }}</div>
+              <div style="font-size:30px;font-weight:800;margin:14px 0 0;letter-spacing:-.02em;color:{{ t.priceColor }}">{{ t.price }}</div>
+              <div style="font-size:13.5px;line-height:1.55;color:{{ t.noteColor }};margin-top:12px">{{ t.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="font-size:13px;color:#94a3b8;margin-top:20px;line-height:1.5">{{ prFootnote }}</p>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ===== TECH ===== -->
+  <section style="background:#0f1f4a;color:#fff">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,80px) clamp(20px,5vw,40px);display:flex;gap:clamp(28px,5vw,56px);flex-wrap:wrap;align-items:center;justify-content:space-between">
+      <div style="flex:1 1 280px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8fa7df;font-family:'JetBrains Mono',monospace">{{ tEyebrow }}</div>
+        <h2 style="font-size:clamp(24px,3.2vw,34px);font-weight:800;letter-spacing:-.02em;margin:14px 0 0;line-height:1.15;max-width:420px">{{ tTitle }}</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:14px">
+          <sc-for list="{{ platforms }}" as="pf" hint-placeholder-count="3">
+            <span style="font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#cdd9f4;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 13px">{{ pf }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 380px;display:flex;flex-wrap:wrap;gap:10px;align-content:center">
+        <sc-for list="{{ tech }}" as="tg" hint-placeholder-count="6">
+          <span style="font-size:14px;font-weight:600;font-family:'JetBrains Mono',monospace;color:#dce5fa;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:9px 15px">{{ tg }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section style="background:{{ accent }}">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(44px,6vw,72px) clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap">
+      <div>
+        <h2 style="font-size:clamp(24px,3.4vw,36px);font-weight:800;color:#fff;letter-spacing:-.02em;margin:0;line-height:1.15">{{ endTitle }}</h2>
+        <p style="font-size:16px;color:rgba(255,255,255,.82);margin:12px 0 0;max-width:480px;line-height:1.55">{{ endSub }}</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <sc-for list="{{ endActions }}" as="a" hint-placeholder-count="1">
+          <a href="{{ a.href }}" target="{{ a.target }}" rel="noopener" style="{{ a.style }}" style-hover="{{ a.hover }}">{{ a.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,340px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    var id = 'dividend-analysis';
+    try { var q = new URLSearchParams(location.search); if (q.get('id')) id = q.get('id'); } catch(e){}
+    this.state = { lang: (window.FI && window.FI.getLang && window.FI.getLang()) || 'ko', id: id };
+  }
+  componentDidMount(){
+    if (window.FI) {
+      this.setState({ lang: window.FI.getLang() });
+      this._off = window.FI.onLangChange((l) => this.setState({ lang: l }));
+    }
+    var p = this._proj();
+    if (p) { try { document.title = (this.state.lang==='ko'? p.name.ko : p.name.en) + ' · Financial-Independence'; } catch(e){} }
+  }
+  componentWillUnmount(){ if (this._off) this._off(); }
+  _proj(){
+    var P = (window.FI && window.FI.PROJECTS) || [];
+    return (window.FI && window.FI.byId && window.FI.byId(this.state.id)) || P[0] || null;
+  }
+  renderVals(){
+    var ko = this.state.lang === 'ko';
+    var t = function(a,b){ return ko ? a : b; };
+    var L = function(o){ return o ? (ko ? o.ko : o.en) : ''; };
+    var p = this._proj();
+    if (!p) return {};
+
+    // hero actions
+    var fill = { textDecoration:'none', background:'#fff', color:'#13245a', fontSize:'16px', fontWeight:700, padding:'14px 26px', borderRadius:'12px', boxShadow:'0 14px 30px -12px rgba(0,0,0,.5)', transition:'transform .15s' };
+    var ghost = { textDecoration:'none', background:'rgba(255,255,255,.08)', border:'1px solid rgba(255,255,255,.26)', color:'#fff', fontSize:'16px', fontWeight:700, padding:'14px 22px', borderRadius:'12px', transition:'background .15s' };
+    var actions = [];
+    var realStore = function(v){ return v && v !== '#'; };
+    var firstFill = !p.url; /* url 없으면 첫 스토어 버튼을 채움 스타일로 */
+    if (p.url) actions.push({ label: L(p.primaryCta), href: p.url, target:'_blank', style: fill, hover:{ transform:'translateY(-2px)' } });
+    if (realStore(p.storeAndroid)) { actions.push({ label: t('Google Play에서 받기','Get it on Google Play'), href: p.storeAndroid, target:'_blank', style: firstFill?fill:ghost, hover: firstFill?{ transform:'translateY(-2px)' }:{ background:'rgba(255,255,255,.16)' } }); firstFill = false; }
+    if (realStore(p.storeIos)) { actions.push({ label: t('App Store에서 받기','Get it on the App Store'), href: p.storeIos, target:'_blank', style: firstFill?fill:ghost, hover: firstFill?{ transform:'translateY(-2px)' }:{ background:'rgba(255,255,255,.16)' } }); firstFill = false; }
+    if (p.repo) actions.push({ label: 'GitHub', href: p.repo, target:'_blank', style: ghost, hover:{ background:'rgba(255,255,255,.16)' } });
+
+    var iosPending = p.storeIos === '#';
+    var androidPending = p.storeAndroid === '#';
+    var showStoreNote = iosPending || androidPending;
+    var storeNoteText = androidPending
+      ? t('· iOS·Android 앱 출시 예정','· iOS & Android apps coming soon')
+      : t('· iOS 앱은 출시 예정입니다','· iOS app coming soon');
+
+    // gallery
+    var mkImg = function(src, cover, alt){
+      if(!src) return null;
+      return React.createElement('img', { src: src, alt: alt || '',
+        style: cover ? { display:'block', width:'100%', height:'100%', objectFit:'cover' }
+                     : { display:'block', width:'100%' } });
+    };
+    var shots = (p.gallery||[]).map(function(g){
+      var isPhone = g.kind === 'phone';
+      return {
+        isWeb: !isPhone && !!g.src,
+        isPhoneImg: isPhone && !!g.src,
+        el: mkImg(g.src, false, L(g.cap)),
+        cap: L(g.cap)
+      };
+    });
+
+    // pricing
+    var hasPricing = !!p.pricing;
+    var pricing = (p.pricing||[]).map(function(pr){
+      var hl = !!pr.highlight;
+      return {
+        name: L(pr.name), price: L(pr.price), note: L(pr.note),
+        cardStyle: hl
+          ? { background: p.accent, borderRadius:'18px', padding:'28px 26px', boxShadow:'0 22px 44px -22px '+p.accent }
+          : { background:'#f8fafc', border:'1px solid #eef2f7', borderRadius:'18px', padding:'28px 26px' },
+        nameColor: hl ? 'rgba(255,255,255,.85)' : p.accent,
+        priceColor: hl ? '#fff' : '#0f172a',
+        noteColor: hl ? 'rgba(255,255,255,.82)' : '#5a6478'
+      };
+    });
+
+    // end CTA actions (on accent bg → white fill)
+    var endFill = { textDecoration:'none', background:'#fff', color: p.accentDeep, fontSize:'16px', fontWeight:700, padding:'14px 26px', borderRadius:'12px', transition:'transform .15s' };
+    var endGhost = { textDecoration:'none', background:'rgba(255,255,255,.14)', border:'1px solid rgba(255,255,255,.4)', color:'#fff', fontSize:'16px', fontWeight:700, padding:'14px 22px', borderRadius:'12px' };
+    var endActions = [];
+    var endFirstFill = !p.url;
+    if (p.url) endActions.push({ label: L(p.primaryCta), href:p.url, target:'_blank', style:endFill, hover:{ transform:'translateY(-2px)' } });
+    if (realStore(p.storeAndroid)) { endActions.push({ label: t('Google Play에서 받기','Get on Google Play'), href:p.storeAndroid, target:'_blank', style: endFirstFill?endFill:endGhost, hover:{} }); endFirstFill = false; }
+    if (realStore(p.storeIos)) { endActions.push({ label: t('App Store에서 받기','Get on App Store'), href:p.storeIos, target:'_blank', style: endFirstFill?endFill:endGhost, hover:{} }); endFirstFill = false; }
+    endActions.push({ label: t('문의하기','Contact us'), href:'Contact.dc.html', target:'_self', style: endActions.length? endGhost : endFill, hover:{} });
+
+    return {
+      heroBg: 'radial-gradient(125% 130% at 82% -12%,'+p.accent+' 0%,'+p.accentDeep+' 70%)',
+      accent: p.accent, accentSoft: p.accentSoft,
+      back: t('프로젝트','Projects'),
+      category: L(p.category),
+      badge: p.released ? t('운영 중','Live') : t('개발 중','In dev'),
+      badgeStyle: { fontSize:'11px', fontWeight:700, letterSpacing:'.06em', fontFamily:'JetBrains Mono,monospace', color:'#fff', background:'rgba(255,255,255,.16)', border:'1px solid rgba(255,255,255,.28)', borderRadius:'999px', padding:'4px 11px', whiteSpace:'nowrap', flexShrink:0 },
+      name: L(p.name), sub: L(p.sub), tagline: L(p.tagline), summary: L(p.desc),
+      actions: actions,
+      showStoreNote: showStoreNote,
+      storeNote: storeNoteText,
+
+      hasLogo: !!p.logo,
+      logoEl: mkImg(p.logo, false, ''),
+      heroIsWeb: !!p.hero && p.heroKind === 'web',
+      heroIsPhone: !!p.hero && p.heroKind === 'phone',
+      heroEl: mkImg(p.hero, false, ''),
+
+      fEyebrow: t('주요 기능','Features'),
+      fTitle: t('핵심만 담아 매끄럽게','The essentials, done well'),
+      features: (p.features||[]).map(function(f){ return { k:f.k, t:L(f.t), d:L(f.d) }; }),
+      stats: (p.stats||[]).map(function(s){ return { v:s.v, u:s.u, l:L(s.l) }; }),
+
+      gEyebrow: t('화면','Screens'),
+      gTitle: t('실제 화면 둘러보기','A look at the real screens'),
+      shots: shots,
+
+      hasPricing: hasPricing,
+      prEyebrow: t('요금','Pricing'),
+      prTitle: t('필요한 만큼만','Pay for what you need'),
+      pricing: pricing,
+      prFootnote: t('결제는 PDF 생성 시점에 안내됩니다. 환불은 각 스토어 정책을 따릅니다.','Payment is offered at PDF export time. Refunds follow each store\u2019s policy.'),
+
+      tEyebrow: t('기술 스택','Tech stack'),
+      tTitle: t('하나의 코드베이스로 웹과 모바일까지','One codebase across web and mobile'),
+      platforms: p.platforms,
+      tech: p.tech,
+
+      endTitle: p.url ? t('지금 바로 사용해 보세요','Try it right now') : t('지금 다운로드하세요','Download it now'),
+      endSub: t('설치나 가입 부담 없이 핵심 기능을 바로 경험할 수 있습니다.','Jump straight into the core features — no friction.'),
+      endActions: endActions
+    };
+  }
+}
+</script>
+</body>
+</html>
