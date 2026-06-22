@@ -23,6 +23,7 @@
       <div class="fi-eyebrow">{{ eyebrow }}</div>
       <h1 class="fi-title">{{ title }}</h1>
       <p class="fi-lead" style="max-width:620px">{{ lead }}</p>
+      <p style="max-width:620px;margin:10px 0 0;color:#94a3b8;font-size:13.5px;line-height:1.55">{{ leadNote }}</p>
     </div>
   </section>
 
@@ -132,8 +133,9 @@ class Component extends DCLogic {
     });
     return {
       eyebrow: t('프로젝트','Projects'),
-      title: t('우리가 만들어 운영하는 서비스','Products we build and run'),
-      lead: t('각 서비스는 실제로 출시되어 사용자가 쓰고 있습니다. 새 프로젝트가 완성되면 이 목록에 계속 추가됩니다.','Every product here is shipped and in use. New projects join this list as they launch.'),
+      title: t('우리가 만든 서비스','Products we build'),
+      lead: t('직접 기획하고 개발한 서비스를 통해 실제 사용자 환경에서 제품의 가능성을 확인합니다.','We validate product potential in real user environments through services we plan and build ourselves.'),
+      leadNote: t('새 프로젝트가 완성되면 이 목록에 계속 추가됩니다.','New projects are added to this list as they are completed.'),
       cards: cards,
       soonTitle: t('더 많은 프로젝트가 개발 중','More projects in development'),
       soonDesc: t('다음 서비스를 준비하고 있습니다. 출시되는 대로 이곳에서 소개할게요.','We\u2019re working on what\u2019s next, and it will appear here the moment it ships.')
