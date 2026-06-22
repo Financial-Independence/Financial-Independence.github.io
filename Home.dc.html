@@ -28,7 +28,7 @@
         <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600;color:#bccbee;margin-bottom:26px">
           <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.22)"></span>{{ heroBadge }}
         </div>
-        <h1 style="font-size:clamp(38px,6vw,68px);font-weight:800;line-height:1.04;letter-spacing:-.03em;margin:0">{{ heroTitle1 }}<br><span style="background:linear-gradient(90deg,#93c5fd,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent">{{ heroTitle2 }}</span></h1>
+        <h1 style="font-size:clamp(38px,6vw,68px);font-weight:800;line-height:1.04;letter-spacing:-.03em;margin:0"><span style="font-size:.82em">{{ heroTitle1 }}</span><br><span style="background:linear-gradient(90deg,#93c5fd,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent">{{ heroTitle2 }}</span></h1>
         <p style="font-size:clamp(16px,2vw,21px);line-height:1.6;color:#c5d2ee;margin:24px 0 0;max-width:520px">{{ heroLead }}</p>
         <div style="display:flex;gap:13px;flex-wrap:wrap;margin-top:36px">
           <a href="Projects.dc.html" class="fi-button fi-button--light" style="padding:14px 26px" style-hover="transform:translateY(-2px);box-shadow:0 20px 38px -12px rgba(0,0,0,.55)">{{ heroCta1 }}</a>
@@ -375,8 +375,8 @@ class Component extends DCLogic {
       resume: function(){ self._hovered = false; self._paused = false; self._start(); },
       dragStart: function(e){ self._heroDragStart(e); },
       heroBadge: t('2개 서비스 운영 중 · 계속 개발합니다', '2 products live · always shipping'),
-      heroTitle1: t('직접 만들어', 'We build it,'),
-      heroTitle2: t('끝까지 출시합니다', 'and we ship it.'),
+      heroTitle1: t('직접 만든 서비스로', 'With services we build,'),
+      heroTitle2: t('가치를 검증합니다', 'we validate real value.'),
       heroLead: t('기획부터 디자인·개발·배포·운영까지 맡아 좋은 아이디어를 실제 사용할 수 있는 웹·모바일 제품으로 만드는 제품 개발 회사입니다.', 'From idea to design, build, deploy and operations, we turn good ideas into web and mobile products people actually use.'),
       heroCta1: t('프로젝트 구경하기', 'Explore projects'),
       statN: '2', statNl: t('운영 중인 서비스','live products'),
@@ -384,11 +384,11 @@ class Component extends DCLogic {
       statMl: t('계속 추가 개발','more shipping'),
 
       vEyebrow: t('우리가 일하는 방식','How we work'),
-      vTitle: t('데모로 끝내지 않습니다. 실제로 출시하고 운영합니다.', 'We don\u2019t stop at demos. We ship and we run them.'),
+      vTitle: t('아이디어를 실제 서비스로 구현하고, 출시 이후의 운영과 개선까지 이어갑니다.', 'We turn ideas into real services and continue through post-launch operations and improvement.'),
       values: [
-        { icon: '\u270E', t: t('직접 만든다','Built in-house'), d: t('외주 없이 기획·디자인·개발·배포까지 한 사람이 끝까지 책임지고 만듭니다.','Planning, design, build and deploy are owned end to end with no outsourcing.') },
-        { icon: '\u2197', t: t('끝까지 출시한다','Shipped, not shelved'), d: t('프로토타입이 아니라 실제 스토어와 웹에 올라가 사용자가 쓰는 제품을 만듭니다.','We build real products on the stores and the web, not prototypes left on a shelf.') },
-        { icon: '\u221E', t: t('지속 가능하게 운영','Sustainable by design'), d: t('광고와 인앱 상품으로 운영비를 충당하며 출시 후에도 계속 개선합니다.','Funded by ads and in-app purchases, improved continuously after launch.') }
+        { icon: '\u270E', t: t('전 과정 직접 개발','End-to-end development'), d: t('아이디어 검토부터 서비스 배포까지 제품의 전 과정을 책임 있게 진행합니다.','We manage the full product process responsibly, from idea review to service deployment.') },
+        { icon: '\u2197', t: t('실제 서비스로 출시','Launched as real services'), d: t('기능 구현을 넘어 배포와 운영까지 고려한 제품을 만듭니다.','We build products with deployment and operations in mind, beyond feature implementation.') },
+        { icon: '\u221E', t: t('지속 가능한 운영','Sustainable operations'), d: t('출시 이후 사용자 반응과 운영 데이터를 바탕으로 서비스를 지속적으로 개선합니다.','After launch, we continuously improve services based on user feedback and operational data.') }
       ],
 
       pEyebrow: t('프로젝트','Projects'),
