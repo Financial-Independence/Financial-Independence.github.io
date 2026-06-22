@@ -33,9 +33,11 @@
           <div style="display:flex;flex-wrap:wrap">
             <div style="flex:1 1 340px;min-width:280px;background:{{ c.mediaBg }};display:flex;align-items:center;justify-content:center;padding:clamp(26px,3.5vw,40px);height:clamp(300px,30vw,360px)">
               <sc-if value="{{ c.isWeb }}" hint-placeholder-val="{{ false }}">
-                <div class="fi-browser-frame" style="width:100%;max-width:440px">
+                <div class="fi-browser-frame fi-browser-frame--card" style="width:100%;max-width:440px">
                   <div class="fi-browser-bar"><span class="fi-browser-dot fi-browser-dot--red"></span><span class="fi-browser-dot fi-browser-dot--yellow"></span><span class="fi-browser-dot fi-browser-dot--green"></span></div>
-                  {{ c.heroEl }}
+                  <div class="fi-browser-frame__viewport">
+                    {{ c.heroEl }}
+                  </div>
                 </div>
               </sc-if>
               <sc-if value="{{ c.isPhone }}" hint-placeholder-val="{{ false }}">
@@ -111,7 +113,7 @@ class Component extends DCLogic {
         noHero: !p.hero,
         heroEl: (p.hero ? React.createElement('img', { src: p.hero, alt: '',
           style: p.heroKind === 'phone'
-            ? { display:'block', width:'100%', height:'100%', objectFit:'cover' }
+            ? { display:'block', width:'100%', height:'auto', minHeight:'100%', objectFit:'cover' }
             : { display:'block', width:'100%' } }) : null),
         mark: p.mark,
         platformsLine: p.platforms.join('  ·  '),

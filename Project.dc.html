@@ -48,7 +48,9 @@
         <sc-if value="{{ heroIsWeb }}" hint-placeholder-val="{{ false }}">
           <div class="fi-browser-frame fi-browser-frame--large" style="width:100%;max-width:520px">
             <div class="fi-browser-bar fi-browser-bar--large"><span class="fi-browser-dot fi-browser-dot--large fi-browser-dot--red"></span><span class="fi-browser-dot fi-browser-dot--large fi-browser-dot--yellow"></span><span class="fi-browser-dot fi-browser-dot--large fi-browser-dot--green"></span></div>
-            {{ heroEl }}
+            <div class="fi-browser-frame__viewport">
+              {{ heroEl }}
+            </div>
           </div>
         </sc-if>
         <sc-if value="{{ heroIsPhone }}" hint-placeholder-val="{{ false }}">
@@ -90,23 +92,40 @@
     <div class="fi-container fi-container--section">
       <div class="fi-section-head" style="--fi-section-accent:{{ accent }}">{{ gEyebrow }}</div>
       <h2 class="fi-section-title" style="margin-bottom:36px">{{ gTitle }}</h2>
-      <div class="fi-grid fi-grid--media" style="gap:22px">
-        <sc-for list="{{ shots }}" as="sh" hint-placeholder-count="3">
-          <figure style="margin:0">
-            <sc-if value="{{ sh.isWeb }}" hint-placeholder-val="{{ false }}">
-              <div class="fi-browser-frame fi-browser-frame--gallery">
-                <div class="fi-browser-bar fi-browser-bar--small"><span class="fi-browser-dot fi-browser-dot--small fi-browser-dot--red"></span><span class="fi-browser-dot fi-browser-dot--small fi-browser-dot--yellow"></span><span class="fi-browser-dot fi-browser-dot--small fi-browser-dot--green"></span></div>
-                {{ sh.el }}
-              </div>
-            </sc-if>
-            <sc-if value="{{ sh.isPhoneImg }}" hint-placeholder-val="{{ false }}">
-              <div class="fi-phone-frame fi-phone-frame--gallery" style="width:200px;max-width:100%;margin:0 auto">
-                {{ sh.el }}
-              </div>
-            </sc-if>
-            <figcaption style="text-align:center;margin-top:13px;font-size:13px;color:#697386;font-family:'JetBrains Mono',monospace">{{ sh.cap }}</figcaption>
-          </figure>
-        </sc-for>
+      <div class="fi-gallery">
+        <sc-if value="{{ hasWebShots }}" hint-placeholder-val="{{ true }}">
+          <div class="fi-gallery__row">
+            <div class="fi-gallery__row-title">{{ webShotsLabel }}</div>
+            <div class="fi-gallery__rail">
+              <sc-for list="{{ webShots }}" as="sh" hint-placeholder-count="3">
+                <figure class="fi-gallery__item fi-gallery__item--web">
+                  <div class="fi-browser-frame fi-browser-frame--gallery">
+                    <div class="fi-browser-bar fi-browser-bar--small"><span class="fi-browser-dot fi-browser-dot--small fi-browser-dot--red"></span><span class="fi-browser-dot fi-browser-dot--small fi-browser-dot--yellow"></span><span class="fi-browser-dot fi-browser-dot--small fi-browser-dot--green"></span></div>
+                    <div class="fi-browser-frame__viewport">
+                      {{ sh.el }}
+                    </div>
+                  </div>
+                  <figcaption class="fi-gallery__caption">{{ sh.cap }}</figcaption>
+                </figure>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ hasPhoneShots }}" hint-placeholder-val="{{ true }}">
+          <div class="fi-gallery__row">
+            <div class="fi-gallery__row-title">{{ phoneShotsLabel }}</div>
+            <div class="fi-gallery__rail">
+              <sc-for list="{{ phoneShots }}" as="sh" hint-placeholder-count="3">
+                <figure class="fi-gallery__item fi-gallery__item--phone">
+                  <div class="fi-phone-frame fi-phone-frame--gallery">
+                    {{ sh.el }}
+                  </div>
+                  <figcaption class="fi-gallery__caption">{{ sh.cap }}</figcaption>
+                </figure>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
       </div>
     </div>
   </section>
@@ -218,14 +237,17 @@ class Component extends DCLogic {
         style: cover ? { display:'block', width:'100%', height:'100%', objectFit:'cover' }
                      : { display:'block', width:'100%' } });
     };
-    var shots = (p.gallery||[]).map(function(g){
+    var webShots = [];
+    var phoneShots = [];
+    (p.gallery||[]).forEach(function(g){
       var isPhone = g.kind === 'phone';
-      return {
-        isWeb: !isPhone && !!g.src,
-        isPhoneImg: isPhone && !!g.src,
+      var shot = {
         el: mkImg(g.src, false, L(g.cap)),
         cap: L(g.cap)
       };
+      if (!g.src) return;
+      if (isPhone) phoneShots.push(shot);
+      else webShots.push(shot);
     });
 
     // pricing
@@ -276,7 +298,12 @@ class Component extends DCLogic {
 
       gEyebrow: t('화면','Screens'),
       gTitle: t('실제 화면 둘러보기','A look at the real screens'),
-      shots: shots,
+      hasWebShots: webShots.length > 0,
+      hasPhoneShots: phoneShots.length > 0,
+      webShotsLabel: t('웹 화면', 'Web screens'),
+      phoneShotsLabel: t('앱 화면', 'App screens'),
+      webShots: webShots,
+      phoneShots: phoneShots,
 
       hasPricing: hasPricing,
       prEyebrow: t('요금','Pricing'),

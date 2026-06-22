@@ -76,7 +76,6 @@
       gallery: [
         { src: 'assets/projects/dividend-analysis/da-web-main.png', kind: 'web', cap: { ko: '메인: 시장 스냅샷과 종목 검색', en: 'Home: market snapshot and search' } },
         { src: 'assets/projects/dividend-analysis/da-web-analysis.png', kind: 'web', cap: { ko: '분석: 조건 입력과 재투자 비교', en: 'Analysis: inputs and reinvestment comparison' } },
-        { src: 'assets/projects/dividend-analysis/da-web-result.png', kind: 'web', cap: { ko: '결과: 요약 카드와 월별 표', en: 'Result: summary cards and monthly table' } },
         { src: 'assets/projects/dividend-analysis/da-mobile-main.jpg', kind: 'phone', cap: { ko: '모바일 메인', en: 'Mobile home' } },
         { src: 'assets/projects/dividend-analysis/da-mobile-result.jpg', kind: 'phone', cap: { ko: '모바일 결과', en: 'Mobile result' } }
       ],
