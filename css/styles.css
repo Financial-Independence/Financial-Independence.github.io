@@ -862,24 +862,6 @@ textarea.fi-inp {
   line-height: 1.65;
 }
 
-.fi-footer__social {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  padding: 8px 15px;
-  color: #cdd9f4;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, .18);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.fi-footer__social:hover {
-  background: rgba(255, 255, 255, .07);
-}
-
 .fi-footer__bottom {
   border-top: 1px solid rgba(255, 255, 255, .1);
 }

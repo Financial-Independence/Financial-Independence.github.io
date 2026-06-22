@@ -203,7 +203,6 @@ class Component extends DCLogic {
     if (p.url) actions.push({ label: L(p.primaryCta), href: p.url, target:'_blank', className: fill, style: {} });
     if (realStore(p.storeAndroid)) { actions.push({ label: t('Google Play에서 받기','Get it on Google Play'), href: p.storeAndroid, target:'_blank', className: firstFill?fill:ghost, style: {} }); firstFill = false; }
     if (realStore(p.storeIos)) { actions.push({ label: t('App Store에서 받기','Get it on the App Store'), href: p.storeIos, target:'_blank', className: firstFill?fill:ghost, style: {} }); firstFill = false; }
-    if (p.repo) actions.push({ label: 'GitHub', href: p.repo, target:'_blank', className: ghost, style: {} });
 
     var iosPending = p.storeIos === '#';
     var androidPending = p.storeAndroid === '#';

@@ -39,7 +39,6 @@
       ko: '웹·모바일 제품을 직접 기획, 개발, 운영하는 제품 개발 회사입니다. 좋은 제품을 실제로 출시하고 지속 가능하게 운영합니다.',
       en: 'A product development company that plans, builds and operates web and mobile products, shipping real products and keeping them sustainable.'
     },
-    github: 'https://github.com/Financial-Independence',
     email: 'ihavesookchi@gmail.com',
     year: 2026
   };
@@ -71,7 +70,6 @@
       url: 'https://dividend-analysis.financial-independence.workers.dev',
       storeIos: null,      /* TODO: App Store 링크 */
       storeAndroid: null,  /* TODO: Google Play 링크 */
-      repo: 'https://github.com/Financial-Independence/dividend_analysis_mvp',
       hero: 'assets/projects/dividend-analysis/da-web-main.png',
       heroKind: 'web',
       heroExtra: 'assets/projects/dividend-analysis/da-mobile-main.jpg',
@@ -120,7 +118,6 @@
       url: null,
       storeIos: '#',      /* TODO: App Store 링크 */
       storeAndroid: 'https://play.google.com/store/apps/details?id=com.financial_independence.deposit_guard',
-      repo: null,
       hero: 'assets/projects/deposit-guard/dg-home.png',
       heroKind: 'phone',
       heroExtra: 'assets/projects/deposit-guard/dg-areas.png',
