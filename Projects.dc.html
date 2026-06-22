@@ -30,9 +30,9 @@
   <section>
     <div class="fi-container fi-container--body fi-stack" style="gap:28px">
       <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
-        <div class="fi-card" style="border-radius:24px;overflow:hidden">
-          <div style="display:flex;flex-wrap:wrap">
-            <div style="flex:1 1 340px;min-width:280px;background:{{ c.mediaBg }};display:flex;align-items:center;justify-content:center;padding:clamp(26px,3.5vw,40px);height:clamp(300px,30vw,360px)">
+        <div class="fi-card" style="border-radius:24px;overflow:hidden;height:clamp(360px,28vw,400px)">
+          <div style="display:flex;flex-wrap:wrap;align-items:stretch;height:100%">
+            <div style="flex:1 1 340px;min-width:280px;background:{{ c.mediaBg }};display:flex;align-items:center;justify-content:center;padding:clamp(26px,3.5vw,40px);height:100%">
               <sc-if value="{{ c.isWeb }}" hint-placeholder-val="{{ false }}">
                 <div class="fi-browser-frame fi-browser-frame--card" style="width:100%;max-width:440px">
                   <div class="fi-browser-bar"><span class="fi-browser-dot fi-browser-dot--red"></span><span class="fi-browser-dot fi-browser-dot--yellow"></span><span class="fi-browser-dot fi-browser-dot--green"></span></div>
@@ -42,7 +42,7 @@
                 </div>
               </sc-if>
               <sc-if value="{{ c.isPhone }}" hint-placeholder-val="{{ false }}">
-                <div class="fi-phone-frame" style="height:100%;aspect-ratio:9/19.3">
+                <div class="fi-phone-frame" style="width:clamp(128px,36%,170px);max-height:100%">
                   {{ c.heroEl }}
                 </div>
               </sc-if>
@@ -114,7 +114,7 @@ class Component extends DCLogic {
         noHero: !p.hero,
         heroEl: (p.hero ? React.createElement('img', { src: p.hero, alt: '',
           style: p.heroKind === 'phone'
-            ? { display:'block', width:'100%', height:'auto', minHeight:'100%', objectFit:'cover' }
+            ? { display:'block', width:'100%', height:'auto' }
             : { display:'block', width:'100%' } }) : null),
         mark: p.mark,
         platformsLine: p.platforms.join('  ·  '),
