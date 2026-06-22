@@ -693,6 +693,126 @@ textarea.fi-inp {
   color: #fff;
 }
 
+.fi-project--dividend-analysis {
+  --fi-project-accent: #1e3a8a;
+  --fi-project-accent-soft: #e8eefc;
+  --fi-project-glow: rgba(120, 170, 255, .5);
+}
+
+.fi-project--deposit-guard {
+  --fi-project-accent: #2e34c4;
+  --fi-project-accent-soft: #ebedfc;
+  --fi-project-glow: rgba(150, 160, 255, .5);
+}
+
+.fi-hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(.96);
+  transition: opacity .8s ease, transform .8s ease;
+  pointer-events: none;
+}
+
+.fi-hero-slide--active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.fi-hero-glow {
+  position: absolute;
+  inset: -12%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 45%, var(--fi-project-glow), transparent 70%);
+  filter: blur(36px);
+}
+
+.fi-hero-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(255, 255, 255, .35);
+  border: none;
+  border-radius: 999px;
+  transition: width .3s, background .3s;
+}
+
+.fi-hero-dot--active {
+  width: 26px;
+  background: #fff;
+}
+
+.fi-project-card {
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid var(--fi-border);
+  border-radius: 22px;
+  box-shadow: var(--fi-shadow-card);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.fi-project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--fi-shadow-card-hover);
+}
+
+.fi-project-card__bar {
+  height: 7px;
+  background: var(--fi-project-accent);
+}
+
+.fi-project-card__logo,
+.fi-project-card__mark {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+}
+
+.fi-project-card__logo {
+  overflow: hidden;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid var(--fi-border);
+}
+
+.fi-project-card__mark {
+  color: var(--fi-project-accent);
+  background: var(--fi-project-accent-soft);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.fi-project-card__category,
+.fi-project-card__cta {
+  color: var(--fi-project-accent);
+}
+
+.fi-project-card__category {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.fi-project-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 24px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
 .fi-footer {
   color: #cdd9f4;
   background: radial-gradient(130% 140% at 85% -20%, #1b366f 0%, var(--fi-blue-900) 45%, #0c1840 100%);

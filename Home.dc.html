@@ -46,10 +46,10 @@
       <div style="flex:1 1 380px;min-width:280px;animation:fiRise .7s .12s cubic-bezier(.2,.7,.2,1) both" onMouseEnter="{{ pause }}" onMouseLeave="{{ resume }}">
         <div style="position:relative;height:clamp(340px,40vw,440px)">
           <sc-for list="{{ slides }}" as="s" hint-placeholder-count="0">
-            <div style="{{ s.wrap }}">
+            <div class="{{ s.wrapClass }}">
               <sc-if value="{{ s.isWeb }}" hint-placeholder-val="{{ false }}">
                 <div style="position:relative;width:100%;max-width:500px">
-                  <div style="{{ s.glowStyle }}"></div>
+                  <div class="fi-hero-glow"></div>
                   <div style="position:relative;z-index:1;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.16);box-shadow:0 40px 80px -30px rgba(0,0,0,.6);background:#fff">
                     <div style="height:36px;background:#eef2f7;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid #e3e8f0">
                       <span style="width:11px;height:11px;border-radius:50%;background:#f87171"></span>
@@ -65,7 +65,7 @@
               </sc-if>
               <sc-if value="{{ s.isPhone }}" hint-placeholder-val="{{ false }}">
                 <div style="position:relative;height:100%;display:flex;align-items:center;justify-content:center">
-                  <div style="{{ s.glowStyle }}"></div>
+                  <div class="fi-hero-glow"></div>
                   <div style="position:absolute;z-index:1;height:82%;aspect-ratio:9/19.3;transform:translateX(-44%) rotate(-9deg);border-radius:26px;overflow:hidden;border:7px solid #0b0e1c;background:#0b0e1c;box-shadow:0 30px 60px -26px rgba(0,0,0,.7);opacity:.72">
                     {{ s.extraEl }}
                   </div>
@@ -80,7 +80,7 @@
         </div>
         <div style="display:flex;justify-content:center;gap:9px;margin-top:22px">
           <sc-for list="{{ dots }}" as="d" hint-placeholder-count="2">
-            <button onClick="{{ d.go }}" style="{{ d.style }}" aria-label="{{ d.label }}"></button>
+            <button onClick="{{ d.go }}" class="{{ d.className }}" aria-label="{{ d.label }}"></button>
           </sc-for>
         </div>
       </div>
@@ -116,19 +116,19 @@
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px">
         <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
-          <a href="{{ c.href }}" style="{{ c.cardStyle }}" style-hover="transform:translateY(-4px);box-shadow:0 28px 56px -28px rgba(15,31,74,.4)">
-            <div style="height:7px;background:{{ c.accent }}"></div>
+          <a href="{{ c.href }}" class="{{ c.cardClass }}">
+            <div class="fi-project-card__bar"></div>
             <div style="padding:30px 30px 26px">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px">
                 <sc-if value="{{ c.hasLogo }}" hint-placeholder-val="{{ false }}">
-                  <span style="{{ c.logoStyle }}">{{ c.logoEl }}</span>
+                  <span class="fi-project-card__logo">{{ c.logoEl }}</span>
                 </sc-if>
                 <sc-if value="{{ c.noLogo }}" hint-placeholder-val="{{ true }}">
-                  <span style="{{ c.markStyle }}">{{ c.mark }}</span>
+                  <span class="fi-project-card__mark">{{ c.mark }}</span>
                 </sc-if>
                 <span class="{{ c.badgeClass }}">{{ c.badge }}</span>
               </div>
-              <div style="font-size:13px;font-weight:700;color:{{ c.accent }};letter-spacing:.02em">{{ c.category }}</div>
+              <div class="fi-project-card__category">{{ c.category }}</div>
               <h3 style="font-size:25px;font-weight:800;letter-spacing:-.02em;margin:6px 0 0;color:#0f172a">{{ c.name }}</h3>
               <p style="font-size:16px;font-weight:600;color:#334155;margin:12px 0 0;line-height:1.4">{{ c.tagline }}</p>
               <p style="font-size:14.5px;line-height:1.6;color:#64748b;margin:12px 0 0">{{ c.summary }}</p>
@@ -137,7 +137,7 @@
                   <span class="fi-tag">{{ pf }}</span>
                 </sc-for>
               </div>
-              <div style="display:flex;align-items:center;gap:7px;margin-top:24px;color:{{ c.accent }};font-size:15px;font-weight:700">{{ c.cta }} <span style="font-size:17px">→</span></div>
+              <div class="fi-project-card__cta">{{ c.cta }} <span style="font-size:17px">-&gt;</span></div>
             </div>
           </a>
         </sc-for>
@@ -199,20 +199,14 @@ class Component extends DCLogic {
     var C = (window.FI && window.FI.COMPANY) || {};
     var P = (window.FI && window.FI.PROJECTS) || [];
 
-    var cardBase = { display:'block', textDecoration:'none', background:'#fff', border:'1px solid #e7ecf5', borderRadius:'22px', overflow:'hidden', boxShadow:'0 1px 3px rgba(15,31,74,.05)', transition:'transform .2s,box-shadow .2s' };
     var cards = P.map(function(p){
-      var markStyle = { width:'46px', height:'46px', borderRadius:'12px', background:p.accentSoft, color:p.accent, display:'grid', placeItems:'center', fontWeight:800, fontSize:'15px' };
-      var logoStyle = { width:'46px', height:'46px', borderRadius:'12px', background:'#fff', border:'1px solid #e7ecf5', overflow:'hidden', padding:'5px', boxSizing:'border-box' };
       return {
         href: 'Project.dc.html?id=' + p.id,
-        accent: p.accent,
-        cardStyle: cardBase,
-        markStyle: markStyle,
+        cardClass: 'fi-project-card fi-project--' + p.id,
         mark: p.mark,
         hasLogo: !!p.logo,
         noLogo: !p.logo,
         logoEl: (p.logo ? React.createElement('img', { src: p.logo, alt: '', style: { width:'100%', height:'100%', objectFit:'contain' } }) : null),
-        logoStyle: logoStyle,
         badge: p.released ? t('운영 중','Live') : t('개발 중','In dev'),
         badgeClass: 'fi-pill fi-pill--compact ' + (p.released ? 'fi-pill--live' : 'fi-pill--pending'),
         category: ko ? p.category.ko : p.category.en,
@@ -233,7 +227,6 @@ class Component extends DCLogic {
     var idx = this.state.heroIdx % (P.length || 1);
     var slides = P.map(function(p, i){
       var active = i === idx;
-      var glow = p.id === 'deposit-guard' ? 'rgba(150,160,255,.5)' : 'rgba(120,170,255,.5)';
       var cover = p.heroKind === 'phone';
       var nm = ko ? p.name.ko : p.name.en;
       return {
@@ -242,21 +235,15 @@ class Component extends DCLogic {
         mainEl: mkImg(p.hero, cover, nm),
         extraEl: mkImg(p.heroExtra, cover, ''),
         name: nm,
-        glowStyle: { position:'absolute', inset:'-12%', background:'radial-gradient(50% 50% at 50% 45%, '+glow+', transparent 70%)', filter:'blur(36px)', zIndex:0, pointerEvents:'none' },
-        wrap: { position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center',
-                opacity: active ? 1 : 0, transform: active ? 'scale(1)' : 'scale(.96)',
-                transition:'opacity .8s ease, transform .8s ease', pointerEvents: active ? 'auto' : 'none' }
+        wrapClass: 'fi-hero-slide fi-project--' + p.id + (active ? ' fi-hero-slide--active' : '')
       };
     });
-    var dotBase = { border:'none', cursor:'pointer', height:'8px', borderRadius:'999px', padding:0, transition:'width .3s, background .3s' };
     var dots = P.map(function(p, i){
       var active = i === idx;
       return {
         go: function(){ self.setState({ heroIdx: i }); self._start(); },
         label: (ko ? p.name.ko : p.name.en) + (ko ? ' 슬라이드 보기' : ' slide'),
-        style: Object.assign({}, dotBase, active
-          ? { width:'26px', background:'#fff' }
-          : { width:'8px', background:'rgba(255,255,255,.35)' })
+        className: 'fi-hero-dot' + (active ? ' fi-hero-dot--active' : '')
       };
     });
     return {
