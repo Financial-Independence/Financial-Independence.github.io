@@ -3,47 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./js/support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="site.js"></script>
-  <style>html,body{margin:0;padding:0}*{box-sizing:border-box}
-    .fi-inp{width:100%;font-family:'Pretendard',-apple-system,sans-serif;font-size:15px;color:#0f172a;background:#fff;border:1px solid #d8dfea;border-radius:11px;padding:13px 15px;outline:none;transition:border-color .15s,box-shadow .15s}
-    .fi-inp:focus{border-color:#1e3a8a;box-shadow:0 0 0 3px rgba(30,58,138,.12)}
-    .fi-inp::placeholder{color:#9aa6b8}
-    textarea.fi-inp{resize:vertical;min-height:130px;line-height:1.5}
-    a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #6e9bff;outline-offset:2px;border-radius:4px}
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/site.js"></script>
   <template id="__bundler_thumbnail"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="14" fill="#0f1f4a"/><text x="32" y="41" font-family="Arial" font-size="24" font-weight="800" fill="#fff" text-anchor="middle">FI</text></svg></template>
 </helmet>
-<div style="font-family:'Pretendard',-apple-system,sans-serif;background:#f6f8fc;color:#0f172a;min-height:100vh;overflow-x:hidden">
+<div class="fi-page fi-page--soft">
   <dc-import name="Nav" current="contact" hint-size="100%,66px"></dc-import>
 
-  <section style="background:#fff;border-bottom:1px solid #eaeef6">
-    <div style="max-width:1000px;margin:0 auto;padding:clamp(48px,7vw,84px) clamp(20px,5vw,40px) clamp(36px,5vw,56px)">
-      <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1e3a8a;font-family:'JetBrains Mono',monospace">{{ eyebrow }}</div>
-      <h1 style="font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-.03em;margin:16px 0 0;line-height:1.08">{{ title }}</h1>
-      <p style="font-size:clamp(16px,2vw,20px);line-height:1.6;color:#5a6478;margin:20px 0 0;max-width:560px">{{ lead }}</p>
+  <section class="fi-section fi-section--hero">
+    <div class="fi-container fi-container--narrow fi-pad-hero">
+      <div class="fi-eyebrow">{{ eyebrow }}</div>
+      <h1 class="fi-title">{{ title }}</h1>
+      <p class="fi-lead" style="max-width:560px">{{ lead }}</p>
     </div>
   </section>
 
   <section>
-    <div style="max-width:1000px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(20px,5vw,40px);display:flex;gap:clamp(28px,4vw,48px);flex-wrap:wrap;align-items:flex-start">
+    <div class="fi-container fi-container--narrow fi-split" style="padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(40px,6vw,72px);gap:clamp(28px,4vw,48px);align-items:flex-start">
       <!-- methods -->
-      <div style="flex:1 1 280px;min-width:260px;display:flex;flex-direction:column;gap:14px">
-        <a href="{{ mailto }}" style="display:flex;gap:15px;align-items:center;text-decoration:none;background:#fff;border:1px solid #e7ecf5;border-radius:16px;padding:20px 22px;transition:transform .15s,box-shadow .15s" style-hover="transform:translateY(-2px);box-shadow:0 18px 36px -22px rgba(15,31,74,.35)">
-          <span style="width:46px;height:46px;border-radius:12px;background:#e8eefc;color:#1e3a8a;display:grid;place-items:center;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></span>
-          <span style="min-width:0"><span style="display:block;font-size:13px;font-weight:700;color:#94a3b8;letter-spacing:.04em">{{ emailLabel }}</span><span style="display:block;font-size:15.5px;font-weight:700;color:#0f172a;margin-top:3px;word-break:break-all">{{ email }}</span></span>
+      <div class="fi-stack" style="flex:1 1 280px;min-width:260px;gap:14px">
+        <a href="{{ mailto }}" class="fi-contact-link">
+          <span class="fi-icon-tile" style="background:#e8eefc;color:#1e3a8a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></span>
+          <span class="fi-contact-link__body"><span class="fi-contact-link__label">{{ emailLabel }}</span><span class="fi-contact-link__value">{{ email }}</span></span>
         </a>
-        <a href="{{ github }}" target="_blank" rel="noopener" style="display:flex;gap:15px;align-items:center;text-decoration:none;background:#fff;border:1px solid #e7ecf5;border-radius:16px;padding:20px 22px;transition:transform .15s,box-shadow .15s" style-hover="transform:translateY(-2px);box-shadow:0 18px 36px -22px rgba(15,31,74,.35)">
-          <span style="width:46px;height:46px;border-radius:12px;background:#1e293b;color:#fff;display:grid;place-items:center;flex:none"><svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></span>
-          <span style="min-width:0"><span style="display:block;font-size:13px;font-weight:700;color:#94a3b8;letter-spacing:.04em">{{ githubLabel }}</span><span style="display:block;font-size:15.5px;font-weight:700;color:#0f172a;margin-top:3px;word-break:break-all">{{ githubHandle }}</span></span>
+        <a href="{{ github }}" target="_blank" rel="noopener" class="fi-contact-link">
+          <span class="fi-icon-tile" style="background:#1e293b;color:#fff"><svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></span>
+          <span class="fi-contact-link__body"><span class="fi-contact-link__label">{{ githubLabel }}</span><span class="fi-contact-link__value">{{ githubHandle }}</span></span>
         </a>
-        <div style="background:#fff;border:1px solid #e7ecf5;border-radius:16px;padding:22px">
+        <div class="fi-card" style="border-radius:16px;padding:22px">
           <div style="font-size:13px;font-weight:700;color:#94a3b8;letter-spacing:.04em;margin-bottom:14px">{{ topicsLabel }}</div>
           <div style="display:flex;flex-direction:column;gap:11px">
             <sc-for list="{{ topics }}" as="tp" hint-placeholder-count="3">
@@ -54,7 +48,7 @@
       </div>
 
       <!-- form -->
-      <div style="flex:1.3 1 360px;min-width:300px;background:#fff;border:1px solid #e7ecf5;border-radius:20px;padding:clamp(26px,4vw,38px);box-shadow:0 1px 3px rgba(15,31,74,.05)">
+      <div class="fi-card" style="flex:1.3 1 360px;min-width:300px;border-radius:20px;padding:clamp(26px,4vw,38px)">
         <h2 style="font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px">{{ formTitle }}</h2>
         <p style="font-size:14px;color:#697386;margin:0 0 24px;line-height:1.5">{{ formNote }}</p>
         <div style="display:flex;flex-direction:column;gap:16px">
@@ -70,7 +64,7 @@
             </select>
           </label>
           <label><span style="{{ lbl }}">{{ fMsg }}</span><textarea class="fi-inp" value="{{ vMsg }}" onInput="{{ onMsg }}" placeholder="{{ phMsg }}"></textarea></label>
-          <button onClick="{{ submit }}" style="margin-top:4px;border:none;cursor:pointer;background:#1e3a8a;color:#fff;font-family:'Pretendard',sans-serif;font-size:16px;font-weight:700;padding:15px 22px;border-radius:12px;transition:transform .15s,box-shadow .15s;box-shadow:0 10px 24px -10px rgba(30,58,138,.7)" style-hover="transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(30,58,138,.8)">{{ submitLabel }}</button>
+          <button onClick="{{ submit }}" class="fi-button fi-button--primary" style="margin-top:4px;border:none;padding:15px 22px" style-hover="transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(30,58,138,.8)">{{ submitLabel }}</button>
           <div style="font-size:12.5px;color:#9aa6b8;text-align:center;line-height:1.5">{{ mailHint }}</div>
         </div>
       </div>
@@ -90,10 +84,7 @@ class Component extends DCLogic {
     };
   }
   componentDidMount(){
-    if (window.FI) {
-      this.setState({ lang: window.FI.getLang() });
-      this._off = window.FI.onLangChange((l) => this.setState({ lang: l }));
-    }
+    if (window.FI && window.FI.bindLang) this._off = window.FI.bindLang(this);
     try { document.title = '문의 · Financial-Independence'; } catch(e){}
   }
   componentWillUnmount(){ if (this._off) this._off(); }

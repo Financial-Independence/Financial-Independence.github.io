@@ -22,6 +22,14 @@
     window.addEventListener('storage', h);
     return function () { listeners.delete(fn); window.removeEventListener('storage', h); };
   }
+  function bindLang(component) {
+    if (!component || typeof component.setState !== 'function') return function () {};
+    component.setState({ lang: getLang() });
+    return onLangChange(function (l) { component.setState({ lang: l }); });
+  }
+  function text(lang, ko, en) {
+    return lang === 'ko' ? ko : en;
+  }
 
   var COMPANY = {
     name: 'Financial-Independence',
@@ -40,7 +48,7 @@
     {
       id: 'dividend-analysis',
       released: true,
-      logo: 'assets/da-logo.png',
+      logo: 'assets/projects/dividend-analysis/da-logo.png',
       mark: 'DA',
       accent: '#1e3a8a',
       accentDeep: '#0f1f4a',
@@ -64,15 +72,15 @@
       storeIos: null,      /* TODO: App Store 링크 */
       storeAndroid: null,  /* TODO: Google Play 링크 */
       repo: 'https://github.com/Financial-Independence/dividend_analysis_mvp',
-      hero: 'assets/da-web-main.png',
+      hero: 'assets/projects/dividend-analysis/da-web-main.png',
       heroKind: 'web',
-      heroExtra: 'assets/da-mobile-main.jpg',
+      heroExtra: 'assets/projects/dividend-analysis/da-mobile-main.jpg',
       gallery: [
-        { src: 'assets/da-web-main.png', kind: 'web', cap: { ko: '메인 — 시장 스냅샷 + 종목 검색', en: 'Home — market snapshot + search' } },
-        { src: 'assets/da-web-analysis.png', kind: 'web', cap: { ko: '분석 — 조건 입력 + 재투자 비교', en: 'Analysis — inputs + reinvestment compare' } },
-        { src: 'assets/da-web-result.png', kind: 'web', cap: { ko: '결과 — 요약 카드 + 월별 표', en: 'Result — summary cards + monthly table' } },
-        { src: 'assets/da-mobile-main.jpg', kind: 'phone', cap: { ko: '모바일 메인', en: 'Mobile home' } },
-        { src: 'assets/da-mobile-result.jpg', kind: 'phone', cap: { ko: '모바일 결과', en: 'Mobile result' } }
+        { src: 'assets/projects/dividend-analysis/da-web-main.png', kind: 'web', cap: { ko: '메인 — 시장 스냅샷 + 종목 검색', en: 'Home — market snapshot + search' } },
+        { src: 'assets/projects/dividend-analysis/da-web-analysis.png', kind: 'web', cap: { ko: '분석 — 조건 입력 + 재투자 비교', en: 'Analysis — inputs + reinvestment compare' } },
+        { src: 'assets/projects/dividend-analysis/da-web-result.png', kind: 'web', cap: { ko: '결과 — 요약 카드 + 월별 표', en: 'Result — summary cards + monthly table' } },
+        { src: 'assets/projects/dividend-analysis/da-mobile-main.jpg', kind: 'phone', cap: { ko: '모바일 메인', en: 'Mobile home' } },
+        { src: 'assets/projects/dividend-analysis/da-mobile-result.jpg', kind: 'phone', cap: { ko: '모바일 결과', en: 'Mobile result' } }
       ],
       features: [
         { k: '검색', t: { ko: '종목 검색 · 최근 본 상품', en: 'Search & recents' }, d: { ko: '250ms 디바운스 검색으로 호출을 줄이고, 최근 본 상품을 자동으로 기억합니다.', en: '250ms-debounced search to cut calls, with recently viewed tickers remembered automatically.' } },
@@ -89,7 +97,7 @@
     {
       id: 'deposit-guard',
       released: true,
-      logo: 'assets/dg-logo.png',
+      logo: 'assets/projects/deposit-guard/dg-logo.png',
       mark: '보증',
       accent: '#2e34c4',
       accentDeep: '#191c66',
@@ -113,15 +121,15 @@
       storeIos: '#',      /* TODO: App Store 링크 */
       storeAndroid: 'https://play.google.com/store/apps/details?id=com.financial_independence.deposit_guard',
       repo: null,
-      hero: 'assets/dg-home.png',
+      hero: 'assets/projects/deposit-guard/dg-home.png',
       heroKind: 'phone',
-      heroExtra: 'assets/dg-areas.png',
+      heroExtra: 'assets/projects/deposit-guard/dg-areas.png',
       gallery: [
-        { src: 'assets/dg-home.png', kind: 'phone', cap: { ko: '홈 — 진행 중인 기록', en: 'Home — records in progress' } },
-        { src: 'assets/dg-areas.png', kind: 'phone', cap: { ko: '점검 구역 · 진행률', en: 'Inspection areas & progress' } },
-        { src: 'assets/dg-inspect.png', kind: 'phone', cap: { ko: '항목 점검 · 사진 + 상태', en: 'Item check — photo + status' } },
-        { src: 'assets/dg-pdf.png', kind: 'phone', cap: { ko: 'PDF 증거 보고서', en: 'PDF evidence report' } },
-        { src: 'assets/dg-export.png', kind: 'phone', cap: { ko: '리포트 미리보기 · 생성', en: 'Report preview & export' } }
+        { src: 'assets/projects/deposit-guard/dg-home.png', kind: 'phone', cap: { ko: '홈 — 진행 중인 기록', en: 'Home — records in progress' } },
+        { src: 'assets/projects/deposit-guard/dg-areas.png', kind: 'phone', cap: { ko: '점검 구역 · 진행률', en: 'Inspection areas & progress' } },
+        { src: 'assets/projects/deposit-guard/dg-inspect.png', kind: 'phone', cap: { ko: '항목 점검 · 사진 + 상태', en: 'Item check — photo + status' } },
+        { src: 'assets/projects/deposit-guard/dg-pdf.png', kind: 'phone', cap: { ko: 'PDF 증거 보고서', en: 'PDF evidence report' } },
+        { src: 'assets/projects/deposit-guard/dg-export.png', kind: 'phone', cap: { ko: '리포트 미리보기 · 생성', en: 'Report preview & export' } }
       ],
       features: [
         { k: '체크', t: { ko: '입주·퇴거 체크리스트', en: 'Move-in & move-out checklist' }, d: { ko: '방 상태를 항목별로 점검하고 입주와 퇴거 시점을 나란히 비교합니다.', en: 'Check the unit item by item and compare move-in against move-out side by side.' } },
@@ -149,6 +157,7 @@
 
   window.FI = {
     getLang: getLang, setLang: setLang, onLangChange: onLangChange,
+    bindLang: bindLang, text: text,
     COMPANY: COMPANY, PROJECTS: PROJECTS, byId: byId
   };
 })();
