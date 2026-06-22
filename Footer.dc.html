@@ -53,17 +53,38 @@
     </div>
   </div>
 </footer>
+<button type="button" class="{{ topClass }}" onClick="{{ scrollTop }}" aria-label="{{ topLabel }}" title="{{ topLabel }}">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m18 15-6-6-6 6"></path>
+  </svg>
+</button>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:340}}">
 class Component extends DCLogic {
   constructor(props){
     super(props);
-    this.state = { lang: (window.FI && window.FI.getLang && window.FI.getLang()) || 'ko' };
+    this.state = {
+      lang: (window.FI && window.FI.getLang && window.FI.getLang()) || 'ko',
+      showTop: false
+    };
   }
   componentDidMount(){
     if (window.FI && window.FI.bindLang) this._off = window.FI.bindLang(this);
+    var self = this;
+    this._onScroll = function(){ self._syncTop(); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._syncTop();
   }
-  componentWillUnmount(){ if (this._off) this._off(); }
+  componentWillUnmount(){
+    if (this._off) this._off();
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+  _syncTop(){
+    var y = 0;
+    try { y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0; } catch(e){}
+    var next = y > 220;
+    if (this.state.showTop !== next) this.setState({ showTop: next });
+  }
   renderVals(){
     var ko = this.state.lang === 'ko';
     var t = function(a,b){ return ko ? a : b; };
@@ -87,7 +108,13 @@ class Component extends DCLogic {
       p0: nm(P,0), p1: nm(P,1),
       moreSoon: t('+ 곧 추가됩니다','+ more coming'),
       contactPage: t('문의 페이지','Contact page'),
-      rights: t('All rights reserved.','All rights reserved.')
+      rights: t('All rights reserved.','All rights reserved.'),
+      topLabel: t('맨 위로', 'Back to top'),
+      topClass: 'fi-scroll-top' + (this.state.showTop ? ' fi-scroll-top--visible' : ''),
+      scrollTop: function(){
+        try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        catch(e){ try { window.scrollTo(0, 0); } catch(_){} }
+      }
     };
   }
 }

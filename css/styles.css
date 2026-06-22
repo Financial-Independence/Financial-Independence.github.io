@@ -905,8 +905,47 @@ textarea.fi-inp {
   font-size: 12.5px;
 }
 
+.fi-scroll-top {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 80;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--fi-blue-800);
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 999px;
+  box-shadow: 0 18px 36px -18px rgba(15, 31, 74, .55);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity .18s, transform .18s, background .18s, box-shadow .18s;
+}
+
+.fi-scroll-top:hover {
+  background: var(--fi-blue-950);
+  box-shadow: 0 22px 42px -18px rgba(15, 31, 74, .7);
+}
+
+.fi-scroll-top--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 @media (max-width: 760px) {
   .fi-footer__main {
     grid-template-columns: 1fr;
+  }
+
+  .fi-scroll-top {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 42px;
+    height: 42px;
   }
 }

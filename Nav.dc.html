@@ -20,7 +20,7 @@
       <span class="fi-nav__mark">FI</span>
       <span class="fi-nav__brand-text">
         <span class="fi-nav__brand-name">Financial-Independence</span>
-        <span class="fi-nav__brand-sub">{{ studioLabel }}</span>
+        <span class="fi-nav__brand-sub">{{ brandSub }}</span>
       </span>
     </a>
     <div class="fi-nav__actions">
@@ -34,7 +34,7 @@
         <button onClick="{{ setKo }}" class="{{ koSeg }}">KO</button>
         <button onClick="{{ setEn }}" class="{{ enSeg }}">EN</button>
       </div>
-      <a href="Projects.dc.html" class="fi-button fi-button--primary fi-nav__cta">{{ ctaLabel }}</a>
+      <a href="Contact.dc.html" class="fi-button fi-button--primary fi-nav__cta">{{ ctaLabel }}</a>
     </div>
   </nav>
 </header>
@@ -57,12 +57,12 @@ class Component extends DCLogic {
     var mk = function(id){ return 'fi-nav__link' + (cur === id ? ' fi-nav__link--active' : ''); };
     var seg = function(on){ return 'fi-nav__lang-button' + (on ? ' fi-nav__lang-button--active' : ''); };
     return {
-      studioLabel: t('인디 개발 스튜디오', 'Indie dev studio'),
+      brandSub: t('파이낸셜 인디펜던스', 'Financial-Independence'),
       navHome: t('홈','Home'),
       navProjects: t('프로젝트','Projects'),
       navAbout: t('소개','About'),
       navContact: t('문의','Contact'),
-      ctaLabel: t('프로젝트 구경','Explore projects'),
+      ctaLabel: t('문의하기','Contact'),
       sHome: mk('home'), sProjects: mk('projects'), sAbout: mk('about'), sContact: mk('contact'),
       koSeg: seg(ko),
       enSeg: seg(!ko),

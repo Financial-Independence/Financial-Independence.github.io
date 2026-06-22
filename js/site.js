@@ -36,8 +36,8 @@
     nameKo: '파이낸셜 인디펜던스',
     tagline: { ko: '만들고, 출시하고, 운영합니다', en: 'We build, ship, and run.' },
     blurb: {
-      ko: '좋은 제품을 직접 만들어 실제로 출시하고, 광고와 인앱 상품으로 지속 가능하게 운영하는 소규모 개발 스튜디오입니다.',
-      en: 'A small studio that builds real products end-to-end, ships them to stores and the web, and keeps them running on ads and in-app purchases.'
+      ko: '웹·모바일 제품을 직접 기획, 개발, 운영하는 제품 개발 회사입니다. 좋은 제품을 실제로 출시하고 지속 가능하게 운영합니다.',
+      en: 'A product development company that plans, builds and operates web and mobile products, shipping real products and keeping them sustainable.'
     },
     github: 'https://github.com/Financial-Independence',
     email: 'ihavesookchi@gmail.com',
