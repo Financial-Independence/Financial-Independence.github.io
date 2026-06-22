@@ -429,17 +429,20 @@ textarea.fi-inp {
 }
 
 .fi-browser-frame--card {
+  height: 100%;
   max-height: 100%;
 }
 
 .fi-browser-frame--large {
+  height: min(420px, 62vh);
   max-height: min(520px, 62vh);
   border-radius: 16px;
   box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .6);
 }
 
 .fi-browser-frame--gallery {
-  max-height: min(520px, 62vh);
+  height: min(360px, 62vw);
+  max-height: 520px;
   border-color: #e3e8f0;
   border-radius: 13px;
   box-shadow: 0 18px 40px -22px rgba(15, 31, 74, .4);
@@ -519,15 +522,16 @@ textarea.fi-inp {
   overflow-x: hidden;
   overflow-y: auto;
   background: #0b0e1c;
-  border: 8px solid #0b0e1c;
+  border: 5px solid #0b0e1c;
   border-radius: 30px;
   box-shadow: 0 26px 54px -26px rgba(0, 0, 0, .5);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, .38) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .fi-phone-frame::-webkit-scrollbar {
-  width: 5px;
+  width: 0;
+  height: 0;
 }
 
 .fi-phone-frame::-webkit-scrollbar-track {
@@ -548,7 +552,7 @@ textarea.fi-inp {
 }
 
 .fi-phone-frame--large {
-  border-width: 10px;
+  border-width: 7px;
   border-radius: 38px;
   box-shadow: 0 40px 80px -28px rgba(0, 0, 0, .6);
   aspect-ratio: 9 / 19.3;
@@ -592,6 +596,14 @@ textarea.fi-inp {
   scroll-snap-type: x proximity;
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 transparent;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fi-gallery__rail--dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
 }
 
 .fi-gallery__rail::-webkit-scrollbar {
@@ -618,7 +630,7 @@ textarea.fi-inp {
 }
 
 .fi-gallery__item--phone {
-  width: 220px;
+  width: 260px;
 }
 
 .fi-gallery__caption {
@@ -852,6 +864,22 @@ textarea.fi-inp {
   pointer-events: auto;
 }
 
+.fi-hero-stage {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fi-hero-stage:active {
+  cursor: grabbing;
+}
+
+.fi-hero-stage img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .fi-hero-glow {
   position: absolute;
   inset: -12%;
@@ -1061,6 +1089,6 @@ textarea.fi-inp {
   }
 
   .fi-gallery__item--phone {
-    width: 190px;
+    width: 226px;
   }
 }

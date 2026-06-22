@@ -54,7 +54,7 @@
           </div>
         </sc-if>
         <sc-if value="{{ heroIsPhone }}" hint-placeholder-val="{{ false }}">
-          <div class="fi-phone-frame fi-phone-frame--large" style="width:248px;max-width:80vw">
+          <div class="fi-phone-frame fi-phone-frame--large" style="width:300px;max-width:88vw">
             {{ heroEl }}
           </div>
         </sc-if>
@@ -200,8 +200,70 @@ class Component extends DCLogic {
     if (window.FI && window.FI.bindLang) this._off = window.FI.bindLang(this);
     var p = this._proj();
     if (p) { try { document.title = (this.state.lang==='ko'? p.name.ko : p.name.en) + ' · Financial-Independence'; } catch(e){} }
+    this._bindGalleryDrag();
   }
-  componentWillUnmount(){ if (this._off) this._off(); }
+  componentWillUnmount(){
+    if (this._off) this._off();
+    this._clearGalleryDrag();
+  }
+  _bindGalleryDrag(){
+    var self = this;
+    setTimeout(function(){
+      self._clearGalleryDrag();
+      self._galleryDrags = [];
+      var rails = document.querySelectorAll('.fi-gallery__rail');
+      Array.prototype.forEach.call(rails, function(el){
+        var startX = 0;
+        var startScroll = 0;
+        var dragging = false;
+        var moved = false;
+
+        var down = function(e){
+          if (e.button != null && e.button !== 0) return;
+          dragging = true;
+          moved = false;
+          startX = e.clientX;
+          startScroll = el.scrollLeft;
+          el.classList.add('fi-gallery__rail--dragging');
+          window.addEventListener('mousemove', move);
+          window.addEventListener('mouseup', up);
+        };
+        var move = function(e){
+          if (!dragging) return;
+          var dx = e.clientX - startX;
+          if (Math.abs(dx) > 4) moved = true;
+          el.scrollLeft = startScroll - dx;
+          if (e.cancelable) e.preventDefault();
+        };
+        var up = function(){
+          dragging = false;
+          el.classList.remove('fi-gallery__rail--dragging');
+          window.removeEventListener('mousemove', move);
+          window.removeEventListener('mouseup', up);
+        };
+        var click = function(e){
+          if (!moved) return;
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        };
+
+        el.addEventListener('mousedown', down);
+        el.addEventListener('click', click, true);
+        self._galleryDrags.push({ el: el, down: down, move: move, up: up, click: click });
+      });
+    }, 0);
+  }
+  _clearGalleryDrag(){
+    if (!this._galleryDrags) return;
+    this._galleryDrags.forEach(function(h){
+      h.el.removeEventListener('mousedown', h.down);
+      h.el.removeEventListener('click', h.click, true);
+      window.removeEventListener('mousemove', h.move);
+      window.removeEventListener('mouseup', h.up);
+    });
+    this._galleryDrags = null;
+  }
   _proj(){
     var P = (window.FI && window.FI.PROJECTS) || [];
     return (window.FI && window.FI.byId && window.FI.byId(this.state.id)) || P[0] || null;

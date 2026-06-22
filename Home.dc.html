@@ -42,7 +42,7 @@
         </div>
       </div>
       <div style="flex:1 1 380px;min-width:280px;animation:fiRise .7s .12s cubic-bezier(.2,.7,.2,1) both" onMouseEnter="{{ pause }}" onMouseLeave="{{ resume }}">
-        <div style="position:relative;height:clamp(340px,40vw,440px)">
+        <div class="fi-hero-stage" style="position:relative;height:clamp(340px,40vw,440px)" onMouseDown="{{ dragStart }}">
           <sc-for list="{{ slides }}" as="s" hint-placeholder-count="0">
             <div class="{{ s.wrapClass }}">
               <sc-if value="{{ s.isWeb }}" hint-placeholder-val="{{ false }}">
@@ -64,10 +64,10 @@
               <sc-if value="{{ s.isPhone }}" hint-placeholder-val="{{ false }}">
                 <div style="position:relative;height:100%;display:flex;align-items:center;justify-content:center">
                   <div class="fi-hero-glow"></div>
-                  <div style="position:absolute;z-index:1;height:82%;aspect-ratio:9/19.3;transform:translateX(-44%) rotate(-9deg);border-radius:26px;overflow:hidden;border:7px solid #0b0e1c;background:#0b0e1c;box-shadow:0 30px 60px -26px rgba(0,0,0,.7);opacity:.72">
+                  <div style="position:absolute;z-index:1;height:90%;aspect-ratio:9/19.3;transform:translateX(-44%) rotate(-9deg);border-radius:26px;overflow:hidden;border:5px solid #0b0e1c;background:#0b0e1c;box-shadow:0 30px 60px -26px rgba(0,0,0,.7);opacity:.72">
                     {{ s.extraEl }}
                   </div>
-                  <div style="position:relative;z-index:2;height:100%;aspect-ratio:9/19.3;border-radius:32px;overflow:hidden;border:9px solid #0b0e1c;background:#0b0e1c;box-shadow:0 44px 84px -28px rgba(0,0,0,.65)">
+                  <div style="position:relative;z-index:2;height:114%;aspect-ratio:9/19.3;border-radius:32px;overflow:hidden;border:6px solid #0b0e1c;background:#0b0e1c;box-shadow:0 44px 84px -28px rgba(0,0,0,.65)">
                     {{ s.mainEl }}
                   </div>
                 </div>
@@ -188,8 +188,132 @@ class Component extends DCLogic {
     if (window.FI && window.FI.bindLang) this._off = window.FI.bindLang(this);
     try { document.title = 'Financial-Independence · 직접 만들고 끝까지 출시합니다'; } catch(e){}
     this._start();
+    this._bindHeroTouch();
   }
-  componentWillUnmount(){ if (this._off) this._off(); clearInterval(this._t); }
+  componentWillUnmount(){
+    if (this._off) this._off();
+    clearInterval(this._t);
+    this._clearHeroDrag();
+    this._clearHeroTouch();
+  }
+  _clearHeroDrag(){
+    if (!this._heroDrag) return;
+    window.removeEventListener('mousemove', this._heroDrag.move);
+    window.removeEventListener('mouseup', this._heroDrag.up);
+    this._heroDrag = null;
+  }
+  _goHero(delta){
+    var len = this._len();
+    if (len < 2) return;
+    this.setState(function(s){
+      return { heroIdx: (s.heroIdx + delta + len) % len };
+    });
+  }
+  _heroDragStart(e){
+    if (e && e.button != null && e.button !== 0) return;
+    if (!e || this._len() < 2) return;
+    if (e.preventDefault) e.preventDefault();
+    this._clearHeroDrag();
+    this._paused = true;
+    clearInterval(this._t);
+
+    var self = this;
+    var startX = e.clientX || 0;
+    var startY = e.clientY || 0;
+    var lastX = startX;
+    var lastY = startY;
+    var moved = false;
+
+    var move = function(ev){
+      lastX = ev.clientX || lastX;
+      lastY = ev.clientY || lastY;
+      if (Math.abs(lastX - startX) > 4 || Math.abs(lastY - startY) > 4) moved = true;
+    };
+    var up = function(){
+      self._clearHeroDrag();
+      var dx = lastX - startX;
+      var dy = lastY - startY;
+      if (moved && Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        self._goHero(dx < 0 ? 1 : -1);
+      }
+      if (self._hovered) {
+        self._paused = true;
+        clearInterval(self._t);
+      } else {
+        self._paused = false;
+        self._start();
+      }
+    };
+
+    this._heroDrag = { move: move, up: up };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  }
+  _bindHeroTouch(){
+    var self = this;
+    setTimeout(function(){
+      var el = document.querySelector('.fi-hero-stage');
+      if (!el || self._heroTouch) return;
+      var startX = 0;
+      var startY = 0;
+      var lastX = 0;
+      var lastY = 0;
+      var tracking = false;
+      var horizontal = false;
+
+      var point = function(e){
+        return e && e.touches && e.touches.length ? e.touches[0] :
+          (e && e.changedTouches && e.changedTouches.length ? e.changedTouches[0] : null);
+      };
+      var start = function(e){
+        var p = point(e);
+        if (!p || self._len() < 2) return;
+        startX = lastX = p.clientX;
+        startY = lastY = p.clientY;
+        tracking = true;
+        horizontal = false;
+        self._paused = true;
+        clearInterval(self._t);
+      };
+      var move = function(e){
+        if (!tracking) return;
+        var p = point(e);
+        if (!p) return;
+        lastX = p.clientX;
+        lastY = p.clientY;
+        var dx = lastX - startX;
+        var dy = lastY - startY;
+        if (!horizontal && Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.2) horizontal = true;
+        if (horizontal && e.cancelable) e.preventDefault();
+      };
+      var end = function(){
+        if (!tracking) return;
+        tracking = false;
+        var dx = lastX - startX;
+        var dy = lastY - startY;
+        if (Math.abs(dx) >= 42 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+          self._goHero(dx < 0 ? 1 : -1);
+        }
+        self._paused = false;
+        self._start();
+      };
+
+      el.addEventListener('touchstart', start, { passive: true });
+      el.addEventListener('touchmove', move, { passive: false });
+      el.addEventListener('touchend', end, { passive: true });
+      el.addEventListener('touchcancel', end, { passive: true });
+      self._heroTouch = { el: el, start: start, move: move, end: end };
+    }, 0);
+  }
+  _clearHeroTouch(){
+    if (!this._heroTouch) return;
+    var h = this._heroTouch;
+    h.el.removeEventListener('touchstart', h.start);
+    h.el.removeEventListener('touchmove', h.move);
+    h.el.removeEventListener('touchend', h.end);
+    h.el.removeEventListener('touchcancel', h.end);
+    this._heroTouch = null;
+  }
   renderVals(){
     var self = this;
     var ko = this.state.lang === 'ko';
@@ -218,7 +342,7 @@ class Component extends DCLogic {
 
     var mkImg = function(src, cover, alt){
       if(!src) return null;
-      return React.createElement('img', { src: src, alt: alt || '',
+      return React.createElement('img', { src: src, alt: alt || '', draggable: false,
         style: cover ? { display:'block', width:'100%', height:'100%', objectFit:'cover' }
                      : { display:'block', width:'100%' } });
     };
@@ -247,8 +371,9 @@ class Component extends DCLogic {
     return {
       slides: slides,
       dots: dots,
-      pause: function(){ self._paused = true; clearInterval(self._t); },
-      resume: function(){ self._paused = false; self._start(); },
+      pause: function(){ self._hovered = true; self._paused = true; clearInterval(self._t); },
+      resume: function(){ self._hovered = false; self._paused = false; self._start(); },
+      dragStart: function(e){ self._heroDragStart(e); },
       heroBadge: t('2개 서비스 운영 중 · 계속 개발합니다', '2 products live · always shipping'),
       heroTitle1: t('직접 만들어', 'We build it,'),
       heroTitle2: t('끝까지 출시합니다', 'and we ship it.'),
