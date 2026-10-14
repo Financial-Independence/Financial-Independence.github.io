@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recipe Snap 개인정보 처리방침</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.7;max-width:920px;margin:0 auto;padding:16px;color:#222;word-break:keep-all}
+h1{font-size:1.6rem}h2{font-size:1.25rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.3rem}h3{font-size:1.05rem;margin-top:1.5rem}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{border:1px solid #ccc;padding:6px 8px;vertical-align:top;text-align:left}th{background:#f3f3f3}
+a{color:#0b57d0}
+</style>
+</head>
+<body>
+<h1>개인정보 처리방침</h1>
+
+<p>시행일: 2026-10-14</p>
+
+<p>파이낸셜 인디펜던스(Financial-Independence)(이하 "회사")는 레시피 정리 앱 「Recipe Snap」(이하 "서비스")을 제공하며, 이용자의 개인정보를 소중히 다룹니다. 이 방침은 회사가 어떤 정보를 어떤 목적으로 받고, 얼마나 보관하며, 어떻게 지우는지 설명합니다.</p>
+
+<h2>1. 처리자와 문의처</h2>
+<ul>
+<li>개인정보 처리자: 파이낸셜 인디펜던스(Financial-Independence), 대표 박찬영</li>
+<li>사업자등록번호: 655-22-02343, 통신판매업 신고번호: 제2026-서울관악-0428호</li>
+<li>사업장 주소: 서울시 관악구 인헌12길 4-1</li>
+<li>개인정보 문의·삭제 요청: <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a></li>
+<li>만 14세 미만 사용 신고: 위 이메일 (아래 3절)</li>
+</ul>
+
+<h2>2. 받는 정보, 목적, 보관 기간</h2>
+<p>"서버"는 회사가 쓰는 Google Cloud(Firebase)의 서울 리전 서버를 말합니다.</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>정보</th><th>목적</th><th>어디에</th><th>보관 기간</th></tr>
+</thead>
+<tbody>
+<tr><td>익명 식별자(Firebase 계정 ID)</td><td>로그인 없이 쓰는 이용자의 AI 추출 횟수 계산, 무료 횟수 악용 방지</td><td>서버, Firebase 인증</td><td>180일(6개월) 동안 앱을 쓰지 않으면 서버가 지웁니다(주 1회 자동 청소). 설정의 "전체 데이터 삭제" 뒤에도 이 기간 동안은 남습니다. 남는 이유는 무료 횟수를 지웠다 다시 받는 악용을 막기 위해서입니다</td></tr>
+<tr><td>하루 출처 갱신 호출 기록(이용자당 문서 하나에 마지막으로 갱신을 요청한 날짜(서울 기준)와 그날 횟수)</td><td>YouTube 링크 레시피의 출처 정보 갱신 횟수를 하루 상한 안으로 지키고 남용을 막음, 익명 계정 정리에서 최근 사용 여부 판단</td><td>서버</td><td>지난 날짜 기록은 쌓이지 않고 한 문서를 덮어씁니다. 만료 없이 계정이 있는 동안 남고, 익명 계정은 마지막 사용 180일 뒤 정리할 때 함께 지워집니다. "전체 데이터 삭제"로는 지워지지 않습니다(하루 상한 초기화 방지). YouTube 기능을 끈 동안에는 만들어지지 않습니다</td></tr>
+<tr><td>월별 AI 추출 사용 횟수(달마다 기록 하나)</td><td>AI 추출 횟수 계산, 무료 횟수 악용 방지</td><td>서버</td><td>이번 달과 지난달 기록만 두고 그보다 오래된 달은 지웁니다(월 1회 자동 청소, 최대 약 2개월). "전체 데이터 삭제" 뒤에도 이 기간 동안은 남습니다(같은 이유)</td></tr>
+<tr><td>레시피(제목·재료·단계·조리 시간·태그), 출처 링크·작성자 이름, 장보기 항목, 스크린샷 사진</td><td>보관, 요리 모드, 검색, 레시피 상세의 사진</td><td>이용자 기기. 사진은 기기에만 있고 서버로 보내지 않습니다</td><td>이용자가 지울 때까지. 설정의 "전체 데이터 삭제"로 기기의 모든 레시피·장보기·사진이 지워집니다</td></tr>
+<tr><td>AI 추출 입력(링크, 공유한 글, 스크린샷에서 인식한 글자, 웹페이지 본문, YouTube 링크의 영상 제목·설명란)</td><td>링크·글·사진에서 레시피 정리(AI 추출)</td><td>서버의 추출 작업 문서, Google Vertex AI(미국, 5절)</td><td>서버: 처리가 끝나면 바로 지우고, 멈춘 작업은 5분 뒤 지웁니다. 사진 자체는 기기 밖으로 나가지 않고 기기에서 인식한 글자만 전송됩니다. 계정 정보는 보내지 않습니다</td></tr>
+<tr><td>추출 결과 초안</td><td>앱이 받아 갈 때까지 보관</td><td>서버</td><td>앱이 받아 가면 지우고, 받아 가지 않아도 7일 뒤(보통 하루 안에) 삭제됩니다</td></tr>
+<tr><td>YouTube 채널 이름·썸네일 주소와 받은 시각</td><td>출처(작성자) 표시, 보관함 썸네일</td><td>레시피와 같은 곳</td><td>받은 지 18일부터 다시 받아 바꾸고, 영상이 삭제·비공개면 지웁니다. 서버 사본은 6시간마다 청소해 20일이 지난 값을 지우고(장애 복구용 사본 7일을 합쳐도 서버에 남는 최대 기간은 29일 이하), 기기에서는 30일을 넘기면 지웁니다. 레시피를 지우면 함께 지웁니다 (YouTube 기능을 켠 경우에만 해당, 7절)</td></tr>
+<tr><td>기기 증명 토큰(Play Integrity)</td><td>정상 앱인지 확인, 남용 방지</td><td>저장하지 않음</td><td>확인 뒤 바로 버립니다</td></tr>
+<tr><td>IP 주소, 사용 중인 앱·기기 종류(user agent), Firebase Android 앱 ID</td><td>계정 보안·남용 방지. Firebase 인증(Google)이 계정 생성 때 기록합니다. 회사 서버로 오는 요청의 IP 주소·앱 종류는 아래 서버 로그 행의 요청 로그에 따로 남습니다</td><td>Google</td><td>Google 이 수 주 보관한 뒤 지우고, 지운 뒤에도 Google 백업에 최대 180일 남을 수 있습니다</td></tr>
+<tr><td>서버 로그(가명 처리한 이용자 식별값, 작업 번호, 길이·개수·상태, 오류 코드)와 서버 요청 로그(요청 IP 주소, 앱 종류(user agent), 요청을 보낸 곳의 주소(referer, 있는 경우), 요청 경로(작업 번호 포함)·상태·응답 시간. Google Cloud 가 요청마다 자동으로 남김)</td><td>운영(장애 확인)·남용 확인</td><td>서버 로그</td><td>30일. 요청 로그의 IP 주소·앱 종류·요청 경로도 30일 뒤 지워집니다. 요청 본문(입력·초안 원문)과 인증 토큰은 요청 로그에 남지 않습니다. 계정 ID 는 그대로 남기지 않고 sha256 앞 12자리 해시(같은 이용자의 로그를 잇는 가명 식별값)로만 남기며, 입력·초안 원문은 남기지 않습니다</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>앱 데이터는 Android 자동 백업(Google 드라이브 백업, 기기 간 이전)에 포함하지 않으므로 재설치하거나 앱 데이터를 지우면 로컬 보관함은 복원되지 않습니다.</p>
+
+<p>받지 않는 것: 위치, 연락처, 광고 ID, 결제 수단 정보, 원본 영상·사진 파일. 서비스에는 광고가 없습니다.</p>
+
+<h3>삭제와 복구용 사본 (공통)</h3>
+<p>지운 데이터는 서비스 서버에서 바로 지워집니다. 장애 복구용 사본에는 최대 7일 남았다가 자동으로 사라지며, 이 사본은 장애 복구에만 쓰고 다른 목적으로 열어 보지 않습니다. (Firebase 인증의 계정 정보에는 해당하지 않습니다.)</p>
+
+<h2>3. 이용 연령과 만 14세 미만</h2>
+<p>서비스는 만 14세 이상만 이용할 수 있습니다. 회사는 나이를 따로 확인하지 않습니다. 첫 실행 시작 화면의 [시작하기] 아래 고지 "계속하면 만 14세 이상이며 이용약관과 개인정보 처리방침에 동의한 것으로 봅니다"로 동의를 받습니다.</p>
+
+<p>만 14세 미만 이용자가 있다는 사실을 알게 되면(보호자 등 제3자 신고 포함) <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 알려 주세요. 별도 경로이며, 일반 삭제는 아래 4절 방법으로 이메일 없이 끝납니다. 로그인하지 않은 이용자의 레시피·장보기·사진은 기기에만 있으므로 설정의 "전체 데이터 삭제"나 앱 삭제로 지웁니다. 서버에 남는 익명 식별자, 하루 출처 갱신 호출 기록, 월별 횟수는 2절의 기간 뒤 지워집니다.</p>
+
+<h2>4. 삭제하는 방법</h2>
+<ol>
+<li>앱을 쓰고 있다면: 설정 &gt; "전체 데이터 삭제". 기기의 레시피·장보기·스크린샷이 지워지고, 서버에 남아 있던 AI 추출 작업 기록도 바로 지워집니다(서버에 연결하지 못하면 아무것도 지우지 않고 다시 시도하라고 안내하며 기기 데이터도 그대로 둡니다). 2절에 적은 익명 식별자, 하루 출처 갱신 호출 기록, 월별 횟수는 무료 횟수 악용 방지를 위해 정해진 기간(180일 미사용, 월별 횟수는 최대 약 2개월) 동안 남습니다.</li>
+<li>앱을 이미 지운 경우: 서버에 남는 것은 2절의 표에 있는 항목뿐이며 정해진 기간 뒤 자동으로 지워집니다(추출 작업과 초안 7일 뒤(보통 하루 안에) 삭제, 서버 로그 30일, 복구용 사본 7일, 익명 식별자 180일, 하루 출처 갱신 호출 기록은 익명 식별자와 함께 180일(YouTube 기능을 켠 경우에만 생김), 월별 횟수 최대 약 2개월). 문의 이메일로 요청을 받지만 앱이 없으면 누구의 데이터인지 알 수 없어 처리하지 못할 수 있고, 남은 기록은 정해진 기간 뒤 자동으로 지워집니다. 웹 삭제 안내: <a href="https://financial-independence.github.io/recipe-snap/delete">https://financial-independence.github.io/recipe-snap/delete</a></li>
+<li>그 밖의 문의: <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a></li>
+</ol>
+
+<h2>5. 개인정보의 국외 이전과 처리 위탁</h2>
+<p>회사의 저장 데이터와 서버 함수는 서울에 있습니다. 국외로 가는 것은 아래입니다. Google LLC 의 개인정보 문의 경로는 Google 개인정보처리방침(<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>)에 안내된 방법을 따릅니다.</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>받는 자</th><th>국가</th><th>이전 항목</th><th>시기·방법</th><th>목적</th><th>보유·이용 기간</th><th>거부 방법과 효과</th></tr>
+</thead>
+<tbody>
+<tr><td>Google LLC, Vertex AI</td><td>미국</td><td><strong>이용자 본인의 계정·기기 정보는 보내지 않습니다</strong>(계정 ID, 기기 정보, IP, 출처 링크 주소 모두 보내지 않음). 보내는 것은 레시피 정리를 요청한 <strong>글 내용</strong>(공유한 글, 스크린샷에서 인식한 글자, 웹페이지 본문, YouTube 영상 제목·설명란. 이메일·링크 등을 가린 뒤)과 <strong>글 종류</strong>(블로그·유튜브 설명란·스크린샷 등)<strong>뿐</strong>입니다. 그 글 안에 <strong>다른 사람의 연락처 등이 섞여 있을 수 있어</strong>, 보내기 전에 이메일, 링크 주소, 한국 형식 전화번호, @아이디를 자동으로 가립니다(완벽하지 않습니다). 글 속의 이름·주소와 한국 형식이 아닌 번호는 가려지지 않아 그대로 갈 수 있습니다.</td><td>AI 추출을 요청할 때마다 암호화된 네트워크로 전송</td><td>레시피 정리</td><td>처리 직후 삭제, AI 학습에 쓰지 않음. Google 자동 분류기가 남용을 의심한 요청에 한해 정책 위반 확인 목적으로 최대 90일 미국에 보관될 수 있고 권한 있는 Google 직원이 볼 수 있습니다</td><td>AI 추출을 쓰지 않고 직접 입력으로 저장하면 이전되지 않습니다. 이 경우 AI 추출은 쓸 수 없고 보관·요리 모드·장보기는 그대로 쓸 수 있습니다</td></tr>
+<tr><td>Google LLC, Firebase 인증</td><td>미국</td><td>계정 ID, IP 주소, user agent(사용 중인 앱·기기 종류), Firebase Android 앱 ID</td><td>앱 첫 실행(익명 계정) 때</td><td>계정, 계정 보안</td><td>2절의 기간</td><td>거부하면 서비스를 쓸 수 없습니다</td></tr>
+<tr><td>Google LLC, ML Kit 글자 인식</td><td>Google 데이터센터 소재 국가(위치 지정 불가)</td><td>기기 정보(제조사·모델·OS 버전), 앱 이름·버전, 설치별 식별자(사용자·기기를 유일하게 식별하려는 것이 아님) 등 기기·앱 식별 정보, 성능·오류 지표, 이미지 형식·해상도 같은 설정, 입출력 크기. 사진과 인식한 글자는 보내지 않습니다(글자 인식은 기기 안에서 하며, 인식한 글자는 AI 추출 때 위 첫 행으로만 갑니다)</td><td>글자 인식 모델은 앱 안에 들어 있어 내려받지 않으며, 글자 인식을 사용할 때 지표를 전송</td><td>글자 인식 성능 측정·오류 수정</td><td>Google 개인정보처리방침에 따름</td><td>끌 수 없습니다(스크린샷으로 가져오기를 쓸 때 지표가 전송되며, 쓰지 않을 때 앱 시작 초기화 지표가 가는지는 확인하지 못했습니다). 스크린샷을 쓰지 않고 다른 방법으로 레시피를 저장할 수 있습니다</td></tr>
+<tr><td>Google LLC, Play Integrity</td><td>Google 데이터센터 소재 국가(위치 지정 불가)</td><td>기기 증명 토큰</td><td>서버 요청 때</td><td>정상 앱 확인, 남용 방지</td><td>저장하지 않음, 확인 뒤 버림</td><td>거부하면 서버 기능을 쓸 수 없습니다</td></tr>
+</tbody>
+</table>
+</div>
+
+<ul>
+<li>처리 위탁: Google LLC(Firebase·Google Cloud: 서버·저장은 서울, AI 추출 처리는 미국)에 맡깁니다.</li>
+<li>별도 동의: 서비스 제공에 필요한 이전이라 이 방침 공개로 하고 별도 동의는 받지 않습니다.</li>
+</ul>
+
+<h2>6. 안전성 확보</h2>
+<p>암호화된 전송, 앱 정상 여부 확인(App Check), 서버 접근 규칙으로 보호하며 로그에는 계정 ID 를 그대로 남기지 않습니다.</p>
+
+<h2>7. YouTube API 서비스</h2>
+<p>이 앱은 YouTube API 서비스를 사용합니다. YouTube 링크에서 가져오기를 쓸 때 YouTube 링크에서 받은 정보에는 Google 개인정보처리방침(<a href="http://www.google.com/policies/privacy">http://www.google.com/policies/privacy</a>)도 적용됩니다. YouTube 링크에서 가져오기를 쓸 때 영상 제목·설명란은 레시피 추출에만 쓰고 추출이 끝나면 지웁니다. 채널 이름·썸네일 주소는 출처 표시에 쓰고 받은 지 30일 안에 다시 받아 바꾸거나 지웁니다. 레시피를 지우거나 데이터를 전체 삭제하면 서버에서 바로 지우고 복구용 사본에서도 7일 안에 사라집니다.</p>
+
+<h2>8. 이용자의 권리</h2>
+<p>이용자는 자신의 정보에 대해 열람·정정·삭제·처리정지를 요청할 수 있습니다. 앱 안 삭제(4절)나 <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 요청하세요. 앱을 쓰지 않는 상태에서는 익명 이용자를 가려낼 수 없어 처리가 제한됩니다.</p>
+
+<h2>9. 방침의 변경</h2>
+<p>방침을 바꾸면 시행 7일 전에 앱 안 또는 이 페이지에 알립니다. 이전 버전이 필요하면 <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 요청하세요.</p>
+</body>
+</html>
