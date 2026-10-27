@@ -55,8 +55,8 @@ a{color:#0b57d0}
 <tbody>
 <tr><td>Google 로그인 토큰(Google 계정 고유 ID, 이메일 주소, 이름, 프로필 사진 주소가 들어 있을 수 있음)</td><td>로그인 확인</td><td>서버(메모리)</td><td>요청마다 확인만 하고 저장하지 않습니다. 계정 ID 외의 정보(이메일·이름·사진)는 쓰지 않습니다</td></tr>
 <tr><td>Google 계정 고유 ID</td><td>크레딧 장부의 계정 구분</td><td>서버(Firestore)</td><td>계정을 삭제할 때까지</td></tr>
-<tr><td>크레딧 잔액, 오늘 사용 횟수와 날짜</td><td>크레딧 차감·충전, 하루 사용 한도</td><td>서버(Firestore)</td><td>계정을 삭제할 때까지</td></tr>
-<tr><td>구매 기록(구매 토큰의 해시, 상품, 크레딧 수, 시각, 계정 ID)</td><td>같은 구매가 두 번 반영되지 않게 함, 구매 확인</td><td>서버(Firestore)</td><td>계정을 삭제하면 계정 ID 를 지우고, 계정과 연결되지 않은 구매 기록만 중복 반영 방지를 위해 남깁니다</td></tr>
+<tr><td>크레딧 잔액, 오늘 사용 횟수와 날짜, 크레딧을 쓴 뒤 환불된 구매 횟수와 이용 제한 여부</td><td>크레딧 차감·충전, 하루 사용 한도, 환불 처리와 환불 남용 방지</td><td>서버(Firestore)</td><td>계정을 삭제할 때까지</td></tr>
+<tr><td>구매 기록(구매 토큰의 해시, Google Play 주문 번호, 상품, 크레딧 수, 시각, 계정 ID, 환불·무효 처리 여부)</td><td>같은 구매가 두 번 반영되지 않게 함, 구매 확인, 환불 처리(<a href="https://financial-independence.github.io/gym3d/refund">환불 안내</a>)</td><td>서버(Firestore)</td><td>계정을 삭제하면 계정 ID 를 지우고, 계정과 연결되지 않은 구매 기록만 중복 반영 방지를 위해 남깁니다</td></tr>
 <tr><td>Google Play 구매 정보(구매 토큰, 상품, 회사가 만든 계정 표시값)</td><td>결제 확인</td><td>Google Play 에서 확인</td><td>결제 수단 정보는 Google 이 처리하며 회사는 받지 않습니다</td></tr>
 <tr><td>AI 요청 조건: 고른 부위, 가진 기구, 운동 수, 오늘 날짜, 그리고 이용자가 '최근 운동 기록도 보내기'를 켠 경우 최근 운동 기록(날짜, 운동, 세트·횟수·무게)</td><td>AI 가 루틴을 짜도록 요청</td><td>서버(메모리) → AI 처리 업체(5절)</td><td>서버는 요청을 처리하는 동안만 쓰고 저장하지 않습니다</td></tr>
 <tr><td>기기 증명 토큰(Play Integrity)</td><td>Google Play 에서 받은 정상 앱인지 확인, 남용 방지</td><td>저장하지 않음</td><td>확인 뒤 바로 버립니다</td></tr>
@@ -75,6 +75,7 @@ a{color:#0b57d0}
 <p>로그인과 유료 AI(크레딧)는 만 14세 이상만 이용할 수 있습니다. 회사는 나이를 따로 확인하지 않습니다. 만 14세 미만 이용자가 로그인한 사실을 알게 되면(보호자 신고 포함) <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 알려 주세요. 해당 계정을 지웁니다.</p>
 
 <h2>4. 삭제하는 방법</h2>
+<p>환불은 <a href="https://financial-independence.github.io/gym3d/refund">크레딧 환불 안내</a>를 확인하세요. 남은 크레딧은 계정을 삭제하면 사라집니다.</p>
 <ol>
 <li>앱에서: 계정·크레딧 화면 &gt; "계정 삭제". 서버의 크레딧 잔액·사용 기록과 계정이 바로 지워지고(구매 기록은 계정 연결만 지움, 2절) 로그아웃됩니다. 남은 크레딧은 사라지며 되돌릴 수 없습니다. 기기의 운동 기록은 그대로 남으며, 앱을 지우거나 앱 데이터를 지우면 함께 사라집니다.</li>
 <li>앱 없이 웹에서: <a href="https://financial-independence.github.io/gym3d/delete">https://financial-independence.github.io/gym3d/delete</a> 에서 같은 Google 계정으로 로그인해 삭제할 수 있습니다.</li>
