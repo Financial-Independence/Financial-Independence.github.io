@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쥐어짠다 계정 삭제</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.7;max-width:920px;margin:0 auto;padding:16px;color:#222;word-break:keep-all}
+h1{font-size:1.6rem}h2{font-size:1.25rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.3rem}
+a{color:#0b57d0}
+#signin{margin:12px 0}
+#status{font-weight:600;min-height:1.7em}
+.ok{color:#146c2e}.err{color:#b3261e}
+</style>
+</head>
+<body>
+<h1>쥐어짠다 계정 삭제</h1>
+<p>제공: 파이낸셜 인디펜던스(Financial-Independence)</p>
+
+<p>쥐어짠다(Squeeze It)의 계정은 유료 'AI 추천(크레딧)'을 쓰려고 Google 로 로그인할 때만 생깁니다. 계정을 지우면 서버의 크레딧 잔액과 사용 기록이 바로 지워지고, 남은 크레딧은 사라지며 되돌릴 수 없습니다. 구매 기록은 같은 구매가 두 번 반영되지 않도록 계정과의 연결만 지운 채 남습니다.</p>
+
+<h2>1. 앱이 설치되어 있다면</h2>
+<ol>
+<li>앱에서 루틴 탭 &gt; 추천받기 &gt; AI &gt; 크레딧 &gt; 크레딧 사기(또는 로그인)로 계정·크레딧 화면을 엽니다.</li>
+<li>"계정 삭제"를 누르고 확인합니다.</li>
+</ol>
+
+<h2>2. 이 페이지에서 바로 지우기</h2>
+<p>앱에서 쓰던 Google 계정으로 로그인하면, 확인을 거쳐 그 계정을 지웁니다.</p>
+<div id="signin"></div>
+<p id="status" role="status"></p>
+
+<h2>3. 이메일로 요청하기</h2>
+<p><a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 로그인에 쓴 Google 계정 이메일과 함께 요청하세요. 본인 확인 뒤 처리합니다.</p>
+
+<h2>지워지지 않는 것</h2>
+<ul>
+<li>폰에 있는 운동 기록·루틴은 서버에 올라가지 않으므로, 앱을 지우거나 앱 데이터를 지우면 함께 사라집니다.</li>
+<li>서버 요청 로그(IP 주소, 앱 종류, 요청 경로)는 30일 뒤 자동으로 지워집니다.</li>
+</ul>
+
+<p>자세한 내용은 개인정보 처리방침 <a href="https://financial-independence.github.io/gym3d/privacy">https://financial-independence.github.io/gym3d/privacy</a> 을 확인하세요.</p>
+
+<script>
+// the gym3d server (Cloud Run) and the web OAuth client whose ID tokens it accepts
+var API = '';
+var CLIENT_ID = '645174566438-0jrj8kuiqdq0m5nm3ch5cu6uhkbbe72a.apps.googleusercontent.com';
+var statusEl = document.getElementById('status');
+function say(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = kind || '';
+}
+function onCredential(res) {
+  if (!confirm('이 Google 계정의 쥐어짠다 계정을 삭제할까요? 남은 크레딧이 모두 사라지고 되돌릴 수 없습니다.')) return;
+  say('삭제하는 중…');
+  fetch(API + '/v1/account', { method: 'DELETE', headers: { Authorization: 'Bearer ' + res.credential } })
+    .then(function (r) {
+      if (r.ok) say('계정을 삭제했습니다.', 'ok');
+      else if (r.status === 401) say('로그인을 확인하지 못했습니다. 다시 시도해 주세요.', 'err');
+      else say('지금 삭제하지 못했습니다. 잠시 뒤에 다시 하거나 이메일로 요청해 주세요.', 'err');
+    })
+    .catch(function () {
+      say('서버에 연결하지 못했습니다. 잠시 뒤에 다시 하거나 이메일로 요청해 주세요.', 'err');
+    });
+}
+window.onload = function () {
+  if (!API) {
+    say('웹 삭제를 준비 중입니다. 앱이나 이메일로 요청해 주세요.');
+    return;
+  }
+  var s = document.createElement('script');
+  s.src = 'https://accounts.google.com/gsi/client';
+  s.onload = function () {
+    google.accounts.id.initialize({ client_id: CLIENT_ID, callback: onCredential });
+    google.accounts.id.renderButton(document.getElementById('signin'), { theme: 'outline', size: 'large', text: 'signin_with', locale: 'ko' });
+  };
+  s.onerror = function () {
+    say('Google 로그인을 불러오지 못했습니다. 이메일로 요청해 주세요.', 'err');
+  };
+  document.head.appendChild(s);
+};
+</script>
+</body>
+</html>

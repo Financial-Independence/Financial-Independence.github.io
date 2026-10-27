@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쥐어짠다 개인정보 처리방침</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.7;max-width:920px;margin:0 auto;padding:16px;color:#222;word-break:keep-all}
+h1{font-size:1.6rem}h2{font-size:1.25rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.3rem}h3{font-size:1.05rem;margin-top:1.5rem}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{border:1px solid #ccc;padding:6px 8px;vertical-align:top;text-align:left}th{background:#f3f3f3}
+a{color:#0b57d0}
+</style>
+</head>
+<body>
+<h1>개인정보 처리방침</h1>
+
+<p>시행일: 2026-10-27</p>
+
+<p>파이낸셜 인디펜던스(Financial-Independence)(이하 "회사")는 운동 자세 3D 앱 「쥐어짠다」(영문 이름 Squeeze It, 이하 "서비스")를 제공하며, 이용자의 개인정보를 소중히 다룹니다. 이 방침은 회사가 어떤 정보를 어떤 목적으로 받고, 얼마나 보관하며, 어떻게 지우는지 설명합니다.</p>
+
+<p>요약: 운동 기록·루틴·설정은 <strong>이용자 기기에만</strong> 있습니다. 회사 서버가 정보를 받는 것은 이용자가 <strong>Google 로그인 후 유료 'AI 추천(크레딧)'</strong>을 쓸 때뿐입니다. 로그인 없이 쓰는 기능(운동 보기, 검색, 루틴, 일지, 기기 안 추천, 내 API 키 AI)은 회사 서버로 아무것도 보내지 않습니다.</p>
+
+<h2>1. 처리자와 문의처</h2>
+<ul>
+<li>개인정보 처리자: 파이낸셜 인디펜던스(Financial-Independence), 대표 박찬영</li>
+<li>사업자등록번호: 655-22-02343, 통신판매업 신고번호: 제2026-서울관악-0428호</li>
+<li>사업장 주소: 서울시 관악구 인헌12길 4-1</li>
+<li>개인정보 문의·삭제 요청: <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a></li>
+</ul>
+
+<h2>2. 받는 정보, 목적, 보관 기간</h2>
+<p>"서버"는 회사가 쓰는 Google Cloud 의 서울 리전 서버(Cloud Run, Firestore)를 말합니다.</p>
+
+<h3>2-1. 기기에만 있는 정보 (회사가 받지 않음)</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>정보</th><th>목적</th><th>어디에</th><th>보관 기간</th></tr>
+</thead>
+<tbody>
+<tr><td>운동 기록(날짜, 운동, 세트·횟수·무게), 루틴, 요일별 예정 부위, 화면 설정</td><td>루틴 실행, 일지, 기기 안 추천</td><td>이용자 기기</td><td>이용자가 지우거나 앱을 지울 때까지. 이용자가 직접 '백업 내보내기'를 하면 이용자가 고른 곳(드라이브, 메신저 등)으로 파일이 갑니다</td></tr>
+<tr><td>이용자 본인의 AI API 키('내 API 키' 방식)</td><td>이용자 본인 계정으로 AI 호출</td><td>기기의 보안 저장소</td><td>이용자가 '키 지우기'를 하거나 앱을 지울 때까지</td></tr>
+<tr><td>로그인했었다는 표시(토큰 아님)</td><td>다음에 유료 AI를 열 때 묻지 않고 다시 로그인</td><td>이용자 기기</td><td>로그아웃·계정 삭제·앱 삭제 때 지워짐</td></tr>
+</tbody>
+</table>
+</div>
+<p>기기 데이터는 이용자의 Android 백업 설정에 따라 이용자 본인의 Google 계정 백업에 포함될 수 있습니다(API 키는 기기의 보안 저장소 키로 암호화되어 다른 기기에서 복원되지 않습니다).</p>
+
+<h3>2-2. 유료 'AI 추천(크레딧)'을 쓸 때 서버가 받는 정보</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>정보</th><th>목적</th><th>어디에</th><th>보관 기간</th></tr>
+</thead>
+<tbody>
+<tr><td>Google 로그인 토큰(Google 계정 고유 ID, 이메일 주소, 이름, 프로필 사진 주소가 들어 있을 수 있음)</td><td>로그인 확인</td><td>서버(메모리)</td><td>요청마다 확인만 하고 저장하지 않습니다. 계정 ID 외의 정보(이메일·이름·사진)는 쓰지 않습니다</td></tr>
+<tr><td>Google 계정 고유 ID</td><td>크레딧 장부의 계정 구분</td><td>서버(Firestore)</td><td>계정을 삭제할 때까지</td></tr>
+<tr><td>크레딧 잔액, 오늘 사용 횟수와 날짜</td><td>크레딧 차감·충전, 하루 사용 한도</td><td>서버(Firestore)</td><td>계정을 삭제할 때까지</td></tr>
+<tr><td>구매 기록(구매 토큰의 해시, 상품, 크레딧 수, 시각, 계정 ID)</td><td>같은 구매가 두 번 반영되지 않게 함, 구매 확인</td><td>서버(Firestore)</td><td>계정을 삭제하면 계정 ID 를 지우고, 계정과 연결되지 않은 구매 기록만 중복 반영 방지를 위해 남깁니다</td></tr>
+<tr><td>Google Play 구매 정보(구매 토큰, 상품, 회사가 만든 계정 표시값)</td><td>결제 확인</td><td>Google Play 에서 확인</td><td>결제 수단 정보는 Google 이 처리하며 회사는 받지 않습니다</td></tr>
+<tr><td>AI 요청 조건: 고른 부위, 가진 기구, 운동 수, 오늘 날짜, 그리고 이용자가 '최근 운동 기록도 보내기'를 켠 경우 최근 운동 기록(날짜, 운동, 세트·횟수·무게)</td><td>AI 가 루틴을 짜도록 요청</td><td>서버(메모리) → AI 처리 업체(5절)</td><td>서버는 요청을 처리하는 동안만 쓰고 저장하지 않습니다</td></tr>
+<tr><td>기기 증명 토큰(Play Integrity)</td><td>Google Play 에서 받은 정상 앱인지 확인, 남용 방지</td><td>저장하지 않음</td><td>확인 뒤 바로 버립니다</td></tr>
+<tr><td>서버 요청 로그(요청 IP 주소, 앱 종류(user agent), 요청 경로·상태·응답 시간)</td><td>운영(장애 확인)·남용 확인</td><td>서버 로그(Google Cloud)</td><td>30일. 요청 본문과 로그인 토큰은 로그에 남기지 않습니다</td></tr>
+<tr><td>달마다의 AI 비용 합계(이용자 구분 없음)</td><td>비용 상한 관리</td><td>서버(Firestore)</td><td>개인정보가 아닙니다</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>받지 않는 것: 위치, 연락처, 사진·카메라, 광고 ID, 결제 수단 정보. 서비스에는 광고가 없고 분석 도구를 쓰지 않습니다.</p>
+
+<h3>2-3. '내 API 키' 방식의 AI</h3>
+<p>이용자가 자기 API 키를 넣고 'AI로 짜기'를 누르면, 화면에 보이는 요청 내용이 이용자 기기에서 이용자가 고른 AI 회사(현재 Anthropic)로 <strong>바로</strong> 갑니다. 회사 서버를 거치지 않으며 회사는 그 내용을 받지 않습니다. 이 요청은 이용자 본인과 그 AI 회사 사이의 이용 조건과 개인정보 처리방침을 따릅니다.</p>
+
+<h2>3. 이용 연령</h2>
+<p>로그인과 유료 AI(크레딧)는 만 14세 이상만 이용할 수 있습니다. 회사는 나이를 따로 확인하지 않습니다. 만 14세 미만 이용자가 로그인한 사실을 알게 되면(보호자 신고 포함) <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 알려 주세요. 해당 계정을 지웁니다.</p>
+
+<h2>4. 삭제하는 방법</h2>
+<ol>
+<li>앱에서: 계정·크레딧 화면 &gt; "계정 삭제". 서버의 크레딧 잔액·사용 기록과 계정이 바로 지워지고(구매 기록은 계정 연결만 지움, 2절) 로그아웃됩니다. 남은 크레딧은 사라지며 되돌릴 수 없습니다. 기기의 운동 기록은 그대로 남으며, 앱을 지우거나 앱 데이터를 지우면 함께 사라집니다.</li>
+<li>앱 없이 웹에서: <a href="https://financial-independence.github.io/gym3d/delete">https://financial-independence.github.io/gym3d/delete</a> 에서 같은 Google 계정으로 로그인해 삭제할 수 있습니다.</li>
+<li>이메일: <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 로그인에 쓴 Google 계정 이메일과 함께 요청하세요. 본인 확인 뒤 처리합니다.</li>
+</ol>
+<p>지운 뒤에도 서버 요청 로그는 30일 뒤 자동으로 지워지고, AI 처리 업체에 간 요청 내용은 5절의 기간 뒤 지워집니다.</p>
+
+<h2>5. 개인정보의 국외 이전과 처리 위탁</h2>
+<p>회사의 서버와 저장 데이터는 서울에 있습니다. 국외로 가는 것은 아래입니다.</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>받는 자</th><th>국가</th><th>이전 항목</th><th>시기·방법</th><th>목적</th><th>보유·이용 기간</th><th>거부 방법과 효과</th></tr>
+</thead>
+<tbody>
+<tr><td>Anthropic, PBC (AI 처리, 문의: <a href="https://privacy.claude.com">https://privacy.claude.com</a>)</td><td>미국</td><td>유료 AI 요청 조건(2-2절: 부위, 가진 기구, 운동 수, 오늘 날짜, 켠 경우 최근 운동 기록). <strong>계정 ID·이메일·기기 정보·IP 는 보내지 않습니다</strong></td><td>'AI로 짜기 · 1크레딧'을 누를 때마다 암호화된 네트워크로 전송</td><td>운동 루틴 생성</td><td>Anthropic 이 받은 날부터 30일 안에 자동 삭제, AI 학습에 쓰지 않음. 이용 정책 위반으로 자동 분류된 요청은 최대 2년 보관될 수 있습니다</td><td>유료 AI 를 쓰지 않으면 이전되지 않습니다. 다른 기능은 그대로 쓸 수 있습니다</td></tr>
+<tr><td>Google LLC (Google 로그인, Google Play 결제·Play Integrity)</td><td>Google 데이터센터 소재 국가</td><td>Google 로그인·결제·기기 증명에 필요한 정보(Google 이 직접 처리)</td><td>로그인, 구매, 유료 AI 요청 때</td><td>로그인, 결제, 정상 앱 확인</td><td>Google 개인정보처리방침(<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>)에 따름</td><td>거부하면 로그인·유료 AI 를 쓸 수 없고, 다른 기능은 그대로 쓸 수 있습니다</td></tr>
+</tbody>
+</table>
+</div>
+
+<ul>
+<li>처리 위탁: 서버 운영과 저장은 Google LLC(Google Cloud, 서울 리전)에, AI 처리는 Anthropic, PBC(미국)에 맡깁니다.</li>
+<li>별도 동의: 이용자가 요청한 기능 제공에 필요한 이전이라 이 방침 공개로 하고 별도 동의는 받지 않습니다.</li>
+</ul>
+
+<h2>6. 안전성 확보</h2>
+<p>모든 전송은 암호화(HTTPS)하고, 서버는 Google 로그인 토큰과 Google Play 구매를 직접 확인하며, 유료 AI 요청은 Google Play 에서 받은 정상 앱인지 확인합니다. 크레딧 장부는 앱이나 웹에서 직접 열 수 없고 서버만 읽고 씁니다.</p>
+
+<h2>7. 이용자의 권리</h2>
+<p>이용자는 자신의 정보에 대해 열람·정정·삭제·처리정지를 요청할 수 있습니다. 앱 안 삭제·웹 삭제(4절)나 <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 요청하세요.</p>
+
+<h2>8. 방침의 변경</h2>
+<p>방침을 바꾸면 시행 7일 전에 앱 안 또는 이 페이지에 알립니다. 이전 버전이 필요하면 <a href="mailto:ihavesookchi@gmail.com">ihavesookchi@gmail.com</a> 로 요청하세요.</p>
+</body>
+</html>
